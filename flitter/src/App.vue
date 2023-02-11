@@ -4,7 +4,26 @@
   <router-link to="/login">Login</router-link>
   <router-link to="/signup">Signup</router-link>
   <router-link to="/test">----TESTVIEW----</router-link>
+  <div id="app">
+    <FooterNav/>
+  </div>
 </template>
+<script>
+    import { defineComponent } from 'vue';
+    import FooterNav from './components/FooterBar.vue';
+  
+    export default defineComponent({
+      name: 'selectedUserView',
+      components: {
+        FooterNav
+  
+      },
+
+      setup() {
+
+      }
+    });
+  </script>
 
 <style>
 

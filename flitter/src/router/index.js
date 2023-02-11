@@ -2,11 +2,17 @@ import { createRouter, createWebHashHistory } from "vue-router";
 /* import haveRoleGuard from './role-guards'; */
 
 const routes = [
-  {
+  /* {
     path: "/",
     name: "HomeView",
     component: () =>
-      import(/* webpackChunkName: "signupView" */ "../views/HomeView.vue"),
+      import( "../views/HomeView.vue"),
+  }, */
+  {
+    path: "/",
+    name: "flitsView",
+    component: () =>
+      import(/* webpackChunkName: "flitsView" */ "../views/FlitsView.vue"),
   },
   {
     path: "/signup",
@@ -26,12 +32,6 @@ const routes = [
     name: "testView",
     component: () =>
       import(/* webpackChunkName: "testView" */ "../views/TestView.vue"),
-  },
-  {
-    path: "/flits",
-    name: "flitsView",
-    component: () =>
-      import(/* webpackChunkName: "flitsView" */ "../views/FlitsView.vue"),
   },
   {
     path: "/flit-details/:id",
