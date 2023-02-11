@@ -8,6 +8,9 @@ const getters = {
     getSelectedUser(state) {
         return state.selectedUser
     },
+    getIsFollowed(state) {
+        return state.isFollowed
+    }
   
 }
 

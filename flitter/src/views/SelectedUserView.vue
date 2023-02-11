@@ -13,8 +13,8 @@
             class="avatar"
             src="../assets/flitterLogo2-removebg-preview.png"
           />
-          <button>Follow</button>
-          <button>Unfollow</button>
+          <button v-if="!isFollowed">Follow</button>
+          <button v-else>Unfollow</button>
         </div>
         <h1>{{ selectedUser.name }}</h1>
         <p class="bio">
@@ -32,11 +32,10 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent,} from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
 import useLogin from "@/composables/useLogin";
-import GoBack from "@/components/GoBack";
 
 export default defineComponent({
   name: "selectedUserView",
@@ -45,19 +44,33 @@ export default defineComponent({
   },
 
   setup() {
-    const {token} = useLogin()
-    const route = useRoute();
+    
+    let followedPeople = localStorage.getItem("followedPeople")
 
-    const id = route.params.id;
+    followedPeople = JSON.parse(followedPeople)
+
+    console.log("Gente a la que sigues", followedPeople)
 
     const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
 
-    console.log("Hola");
+    const route = useRoute();
 
-    fetchSelectedUser(id);
-    console.log("Usuario", selectedUser);
+    const id = route.params.id;
+ 
+    let isFollowed = false
+    
+    async function showUserInfo(id) {
 
-    return { selectedUser, isLoading, token };
+      await fetchSelectedUser(id)
+      if (followedPeople.includes(id)) {
+        isFollowed = true
+      } 
+
+    }
+
+    showUserInfo(id);
+
+    return { selectedUser, isLoading, isFollowed};
   },
 });
 </script>

@@ -9,7 +9,9 @@ const mutations = {
     setSelectedUser(state, selectedUser) {
         state.selectedUser = selectedUser
     },
-
+    setIsFollowed(state, value) {
+        state.isFollowed = value
+    }
 }
 
 export default mutations
