@@ -22,6 +22,19 @@
   <div>
     <button @click="fetchUsers()">Pedir usuarios</button>
   </div>
+    <div>
+      <button @click="openModal">Abrir Modal</button>
+
+      <GoModal title="Hola mundo" v-if="isOpen" @on:close="closeModal">
+        <h3> Introduce el nuevo mensaje</h3>
+        <form @submit.prevent="createNewFlit(flitInfo); isOpen = false; flitInfo.message ='' " >
+          <input type="text" placeholder="Mensaje Nuevo" v-model="flitInfo.message" required>
+          <button 
+          type="submit"  
+          > Crear Flit</button>
+        </form>
+      </GoModal>
+    </div>
   </div>
   <GoBack />
 </template>
@@ -33,11 +46,12 @@ import useUsers from '@/composables/useUsers';
 import router from '@/router';
 import {  ref } from 'vue';
 import GoBack from '@/components/GoBack';
+import GoModal from '@/components/GoModal';
 
 export default {
   name: 'testView',
   components: {
-    GoBack
+    GoBack, GoModal
   },
   setup() {
 
@@ -48,7 +62,7 @@ export default {
 
     const {fetchFlits, createNewFlit} = useFlits()
     const {fetchUsers} = useUsers()
-
+    const isOpen = ref(false)
     function goProfile() {
       router.push({name: "profileView"})
     }
@@ -58,7 +72,10 @@ export default {
         createNewFlit,
         flitInfo,
         fetchUsers,
-        goProfile
+       isOpen,
+        goProfile,
+        openModal : () => isOpen.value = true,
+        closeModal: () => isOpen.value = false,
     }       
   }
 }
