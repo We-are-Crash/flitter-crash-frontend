@@ -1,48 +1,47 @@
 <template>
-    <div class="details">
-      <div v-if="!isLoading">
-        <div class="user-details">
-            <h1 class="user-name"> {{ selectedUser.name }}</h1>
-          </div>
-        </div>
-      <div v-else>Cargando...</div>
-    </div>
-  </template>
+    <div></div>
+      <div v-if="isLoading ">
+        <div>Cargando...</div>
+      </div>
+      <div v-else>
+        <h1>{{selectedUser.name}}</h1>
+      </div>
+  
+</template>
     
     <script>
     import { defineComponent } from 'vue';
     import useUsers from '@/composables/useUsers';
+    import { useRoute } from 'vue-router';
   
-    
-    
     export default defineComponent({
       name: 'selectedUserView',
       components: {
   
       },
-      props: {
-        id: {
-          type: Number,
-          required: true,
-        },
-      },
-  
-      setup(props) {
 
-        console.log("Id del usuario desde detalle", props.id)
-          
-        const {selectedUser, fetchSelectedUser} = useUsers()
+      setup() {
 
-        fetchSelectedUser(props.id)
+        const route = useRoute()
+        
+        const id = route.params.id
+        
   
-        return {selectedUser}
+        const {selectedUser, fetchSelectedUser, isLoading} = useUsers()
+
+        console.log("Hola")
+
+        fetchSelectedUser(id)
+        console.log("Usuario", selectedUser)
+
+        return {selectedUser, isLoading}
       }
     });
   </script>
   
   <style scoped>
   
-  .product-details {
+  .user-info {
     min-height: 200px;
     max-width: 70%;
     border: 1px solid black;

@@ -5,34 +5,16 @@
     <div class="flitList-main-wraper">
       <div v-if="isLoading">Cargando...</div>
       <div class="flits-list" v-else>
-        <FlitCard v-for="flit in flits" :key="flit._id" :flit="flit" @goUserProfile="goUserProfile(flit)"/>
+        <FlitCard v-for="flit in flits" :key="flit._id" :flit="flit" @go-user-profile="goUserProfile(flit)"/>
       </div>
     </div>
   </template>
   
     
-<<<<<<< HEAD
-    <script>
-      import { defineComponent } from 'vue';
-      import useFlits from '@/composables/useFlits';
-      import FlitCard from '@/components/FlitCard.vue';
-  
-      
-      export default defineComponent({
-        name: 'flitsView',
-        components: {
-          FlitCard,
-        },
-  
-        setup() {
-            
-            const {flits, isLoading, fetchFlits} = useFlits()
-=======
 <script>
   import { defineComponent } from 'vue';
   import useFlits from '@/composables/useFlits';
   import FlitCard from '@/components/FlitCard.vue';
->>>>>>> 18589ae363a42d551fc5f0ce8a152ff92ca25bd1
   import router from '@/router';
   
   export default defineComponent({
@@ -48,9 +30,9 @@
       fetchFlits()
 
       function goUserProfile(flit) {
+
         const id = flit.id_user._id
-        console.log("Id del usuario:", id)
-        router.push({name: "selectedUserView", params: {id} })
+        router.push({name: "selectedUserView", params: {id: id} })
       }
       
     return {

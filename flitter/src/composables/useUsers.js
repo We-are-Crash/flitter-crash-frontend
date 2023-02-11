@@ -9,6 +9,11 @@ const useUsers = () => {
         //Getters
         selectedUser: computed(() => store.getters["users/getSelectedUser"]),
         selfUser: computed(() => store.getters["users/getSelfUser"]),
+        selectedUserId: computed(() => store.getters["users/getSelectedUserId"]),
+        isLoading: computed(() => store.getters["users/getIsLoading"]),
+
+        //Mutations
+        setSelectedUserId: (selectedUserId) => store.commit("users/setSelectedUserId", selectedUserId), 
 
         //Actions
         signUp: (userInfo) => store.dispatch("users/signUp", userInfo), 
