@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-/* import haveRoleGuard from './role-guards'; */
+import haveRoleGuard from './role-guards';
 
 const routes = [
   /* {
@@ -45,6 +45,7 @@ const routes = [
   {
     path: "/user-profile/:id",
     name: "selectedUserView",
+    beforeEnter: [haveRoleGuard],
     component: () => import("../views/SelectedUserView.vue"),
     props: (route) => {
       const id = route.params.id;
@@ -54,6 +55,7 @@ const routes = [
   {
     path: "/profile",
     name: "profileView",
+    beforeEnter: [haveRoleGuard],
     component: () =>
       import(/* webpackChunkName: "profileView" */ "../views/ProfileView.vue"),
   },

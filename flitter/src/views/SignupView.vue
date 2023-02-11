@@ -31,7 +31,7 @@
 <script>
 
   import { defineComponent, ref } from 'vue';
-  import useUsers from '@/composables/useUsers';
+  import useLogin from '@/composables/useLogin';
   import GoBack from "@/components/GoBack";
   
   export default defineComponent({
@@ -55,7 +55,7 @@
       alert(message);
     };
 
-    const { signUp } = useUsers()
+    const { signUp } = useLogin()
 
 /*     function showUserInfo (userInfo) {
       console.log(userInfo)

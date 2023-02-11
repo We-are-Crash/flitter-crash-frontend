@@ -14,6 +14,7 @@
             src="../assets/flitterLogo2-removebg-preview.png"
           />
           <button>Follow</button>
+          <button>Unfollow</button>
         </div>
         <h1>{{ selectedUser.name }}</h1>
         <p class="bio">
@@ -33,12 +34,14 @@
 import { defineComponent } from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
+import useLogin from "@/composables/useLogin";
 
 export default defineComponent({
   name: "selectedUserView",
   components: {},
 
   setup() {
+    const {token} = useLogin()
     const route = useRoute();
 
     const id = route.params.id;
@@ -50,7 +53,7 @@ export default defineComponent({
     fetchSelectedUser(id);
     console.log("Usuario", selectedUser);
 
-    return { selectedUser, isLoading };
+    return { selectedUser, isLoading, token };
   },
 });
 </script>
