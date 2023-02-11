@@ -5,7 +5,7 @@
     <div class="flitList-main-wraper">
       <div v-if="isLoading">Cargando...</div>
       <div class="flits-list" v-else>
-        <FlitCard v-for="flit in flits" :key="flit._id" :flit="flit" @go-user-profile="goUserProfile(flit)"/>
+        <FlitCard v-for="flit in flits" :key="flit._id" :flit="flit" @goUserProfile="goUserProfile(flit)"/>
       </div>
     </div>
   </template>
@@ -30,37 +30,34 @@
       fetchFlits()
 
       function goUserProfile(flit) {
-
         const id = flit.id_user._id
-        router.push({name: "selectedUserView", params: {id: id} })
+        console.log("Id del usuario:", id)
+        router.push({name: "selectedUserView", params: {id} })
       }
       
     return {
       isLoading,
       flits,
-      goUserProfile
-    }
-  }
-
+      goUserProfile,
+    };
+  },
 });
 </script>
-  
-<style scoped>
-  
-  .title {
-    padding: 20px;
-  }
-  .product-list {
-    display: flex;
-    flex-flow: row wrap;
-    width: 100%;
-    gap: 1rem 1rem;
-    margin-left: 10px;
-  }
 
-  .flitList-main-wraper {
-    display: flex;
-    justify-content: center;
-  }
-  
-  </style>
+<style scoped>
+.title {
+  padding: 20px;
+}
+.product-list {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  gap: 1rem 1rem;
+  margin-left: 10px;
+}
+
+.flitList-main-wraper {
+  display: flex;
+  justify-content: center;
+}
+</style>

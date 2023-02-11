@@ -14,13 +14,13 @@
 
 <script>
 export default {
-  name: 'DrawerView',
+  name: "DrawerView",
   data() {
     return {
-      isDrawerVisible: false
-    }
-  }
-}
+      isDrawerVisible: false,
+    };
+  },
+};
 </script>
 
 <style>
