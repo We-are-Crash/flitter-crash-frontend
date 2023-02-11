@@ -1,9 +1,5 @@
 <template>
   <router-view />
-  <router-link to="/menu">Menu</router-link>
-  <router-link to="/login">Login</router-link>
-  <router-link to="/signup">Signup</router-link>
-  <router-link to="/test">----TESTVIEW----</router-link>
   <div id="app">
     <FooterNav/>
   </div>
@@ -16,7 +12,6 @@
       name: 'selectedUserView',
       components: {
         FooterNav
-  
       },
 
       setup() {
@@ -61,6 +56,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: rgb(49, 49, 49);
+  margin-top: 50px;
 }
 
 nav a.router-link-exact-active {

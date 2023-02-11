@@ -45,8 +45,10 @@
 </script>
 
 <style scoped>
-.title {
-  padding: 20px;
+
+h1 {
+  margin-top: 70px;
+  margin-bottom: 20px;
 }
 .product-list {
   display: flex;
@@ -60,4 +62,5 @@
   display: flex;
   justify-content: center;
 }
+
 </style>

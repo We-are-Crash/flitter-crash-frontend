@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    setup( props, context ) {
+    setup( ) {
 
     }
 }
@@ -24,7 +24,6 @@ export default {
     left: 0;
     width: 100vw;
     height: 100vh;
-
     display: flex;
     background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
@@ -32,6 +31,7 @@ export default {
 }
 
 .modal-container {
+  margin: 20px;
     width: 250px;
     height: 250px;
     background-color: white;

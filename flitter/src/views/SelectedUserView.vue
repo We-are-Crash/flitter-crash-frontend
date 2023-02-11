@@ -26,6 +26,7 @@
           <p><span>12</span> followers</p>
         </div>
       </div>
+      <GoBack />
     </div>
   </div>
 </template>
@@ -35,10 +36,13 @@ import { defineComponent } from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
 import useLogin from "@/composables/useLogin";
+import GoBack from "@/components/GoBack";
 
 export default defineComponent({
   name: "selectedUserView",
-  components: {},
+  components: {
+    GoBack
+  },
 
   setup() {
     const {token} = useLogin()
@@ -59,48 +63,64 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.user-card {
-  background-color: rgb(246, 245, 240);
+
+body {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+.user-card {
+  display: flex;
+  flex-direction: column;
+  margin: 120px 40px;
 }
 .user-background {
   max-height: 150px;
+  border-radius: 8px 8px 0px 0px;
 }
 .user-info {
   min-height: 200px;
-  padding: 20px;
+  padding: 30px;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
   text-align: left;
+  background-color: rgb(246, 245, 240);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .avatar-and-follow-btn {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
   margin-bottom: 5px;
 }
 
-.avatar {
+.avatar-and-follow-btn > .avatar {
   width: 60px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.533);
+  align-self: flex-start;
 }
 
-button {
+.avatar-and-follow-btn > button {
   background: none;
   border: 1px solid rgb(103, 103, 103);
   border-radius: 15px;
   color: rgb(47, 47, 47);
   cursor: pointer;
-
   padding: 5px 15px;
+  margin-left: 25px;
 }
 
 button:active,
 button:hover {
   color: white;
   background-color: rgb(52, 52, 52);
+}
+
+.user-background img {
+  height: 20px;
 }
 
 h1 {

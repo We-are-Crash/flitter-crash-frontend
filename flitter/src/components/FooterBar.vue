@@ -1,7 +1,10 @@
 <template>
     <header class="header" id= "header">
         <nav class="nav container">
-                <router-link to="/profile" href="#" class="nav_logo">Marlon</router-link>
+                <router-link to="/profile" href="#" class="nav_logo">
+                    <img src="../assets/flitter-icon-whiteBgr.png">
+                </router-link>
+                
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
@@ -100,8 +103,8 @@ a {
     text-decoration: none;
 }
 
-img {
-    max-width: 100%;
+header img {
+    max-width: 20%;
     height: auto;
 }
 
@@ -133,9 +136,20 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--container-color);
     z-index: var(--z-fixed);
     transition: .4s;
+    background-color: black;
+    margin-top: 30px;
+    }
+
+    #nav__logo > img {
+        width: 50px;
+        position: absolute;
+        align-self: flex-start;
+    }
+
+    img {
+        border-radius: 50%;
     }
 
 .nav {
