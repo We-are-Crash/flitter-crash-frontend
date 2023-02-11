@@ -11,9 +11,9 @@
 
 <script>
 export default {
-    setup( props, context ) {
+    /* setup( props, context ) {
 
-    }
+    } */
 }
 </script>
 

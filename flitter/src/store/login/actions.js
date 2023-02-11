@@ -14,7 +14,7 @@ const actions = {
 
     router.push({name: "flitsView"})
   },
-  
+
   async signUp({ commit }, userInfo) {
     const { data } = await flitterApi.post("/users/signup", userInfo);
 

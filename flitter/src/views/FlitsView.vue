@@ -31,7 +31,6 @@
 
       function goUserProfile(flit) {
         const id = flit.id_user._id
-        console.log("Id del usuario:", id)
         router.push({name: "selectedUserView", params: {id} })
       }
       

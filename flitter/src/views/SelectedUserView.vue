@@ -13,8 +13,8 @@
             class="avatar"
             src="../assets/flitterLogo2-removebg-preview.png"
           />
-          <button>Follow</button>
-          <button>Unfollow</button>
+          <button v-if="isFollowed">Follow</button>
+          <button v-else >Unfollow</button>
         </div>
         <h1>{{ selectedUser.name }}</h1>
         <p class="bio">
@@ -41,19 +41,27 @@ export default defineComponent({
   components: {},
 
   setup() {
-    const {token} = useLogin()
+    const {selfUser} = useLogin()
+    const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
+
     const route = useRoute();
 
     const id = route.params.id;
+    let isFollowed = false
 
-    const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
+    async function showUserInfo(id) {
 
-    console.log("Hola");
+      await fetchSelectedUser(id)
+      const followedPeople = selfUser.peopleYouFollow
+      console.log(followedPeople)
+      if (followedPeople.includes(id)) {
+        isFollowed = true
+      } 
+    }
 
-    fetchSelectedUser(id);
-    console.log("Usuario", selectedUser);
+    showUserInfo(id);
 
-    return { selectedUser, isLoading, token };
+    return { selectedUser, isLoading, isFollowed};
   },
 });
 </script>
