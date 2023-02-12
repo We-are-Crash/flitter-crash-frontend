@@ -71,7 +71,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
 
 :root {
---header-height: 3rem;
+--header-height: 50px;
 --hue: 174;
 --sat: 63%;
 --first-color: hsl(var(--hue), var(--sat), 40%);
@@ -85,7 +85,7 @@ export default {
 --body-font: 'Open Sans', sans-serif;
 --h1-font-size: 1.5rem;
 --normal-font-size: .938rem;
---tiny-font-size: .625rem;
+--tiny-font-size: 13px;
 
 /*========== z index ==========*/
 --z-tooltip: 10;
@@ -120,6 +120,7 @@ a {
 header img {
     max-width: 20%;
     height: auto;
+    
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -150,10 +151,8 @@ header img {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: var(--z-fixed);
-    transition: .4s;
-    /* background-color: black; */
-    margin-top: 30px;
+    padding: 20px;
+    background-color: black;
     }
 
     #nav__logo > img {
@@ -223,7 +222,7 @@ header img {
     }
 
 .nav__icon {
-    font-size: 1.5rem;
+    font-size: 18px;
     }
 
 /* For medium devices */
@@ -231,9 +230,6 @@ header img {
 .nav__list {
         justify-content: center;
         column-gap: 3rem;
-    }
-.nav__link:hover {
-    color: var(--first-color);
     }
     }
 
@@ -256,9 +252,6 @@ body {
 .nav__name {
     font-size: var(--normal-font-size);
     /* display: block; */ /* Minimalist design, visible labels */
-    }
-.nav__link:hover {
-    color: var(--first-color);
     }
 }
 </style>
