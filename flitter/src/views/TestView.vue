@@ -1,37 +1,60 @@
 <template>
   <div class="app-wraper">
     <div>
-    <button @click="fetchFlits()">Pedir flits</button>
-  </div>
+      <button @click="fetchFlits()">Pedir flits</button>
+    </div>
 
-  <form>
+    <form>
       <div>
-        <input type="text" placeholder="User id" v-model="flitInfo.id_user" required>
+        <input
+          type="text"
+          placeholder="User id"
+          v-model="flitInfo.id_user"
+          required
+        />
       </div>
 
       <div>
-        <input type="text" placeholder="Mensaje" v-model="flitInfo.message" required>
+        <input
+          type="text"
+          placeholder="Mensaje"
+          v-model="flitInfo.message"
+          required
+        />
       </div>
 
       <div id="lower">
-          <input class="button" type="submit" value="Crear flit" @click="createNewFlit(flitInfo)">  
+        <input
+          class="button"
+          type="submit"
+          value="Crear flit"
+          @click="createNewFlit(flitInfo)"
+        />
       </div>
-      
-  </form>
+    </form>
 
-  <div>
-    <button @click="fetchUsers()">Pedir usuarios</button>
-  </div>
+    <div>
+      <button @click="fetchUsers()">Pedir usuarios</button>
+    </div>
     <div>
       <button @click="openModal">Abrir Modal</button>
 
       <GoModal title="Hola mundo" v-if="isOpen" @on:close="closeModal">
-        <h3> Introduce el nuevo mensaje</h3>
-        <form @submit.prevent="createNewFlit(flitInfo); isOpen = false; flitInfo.message ='' " >
-          <input type="text" placeholder="Mensaje Nuevo" v-model="flitInfo.message" required>
-          <button 
-          type="submit"  
-          > Crear Flit</button>
+        <h3>Introduce el nuevo mensaje</h3>
+        <form
+          @submit.prevent="
+            createNewFlit(flitInfo);
+            isOpen = false;
+            flitInfo.message = '';
+          "
+        >
+          <input
+            type="text"
+            placeholder="Mensaje Nuevo"
+            v-model="flitInfo.message"
+            required
+          />
+          <button type="submit">Crear Flit</button>
         </form>
       </GoModal>
     </div>
@@ -40,53 +63,52 @@
 </template>
 
 <script>
-
-import useFlits from '@/composables/useFlits';
-import useUsers from '@/composables/useUsers';
-import router from '@/router';
-import {  ref } from 'vue';
-import GoBack from '@/components/GoBack';
-import GoModal from '@/components/GoModal';
+import useFlits from "@/composables/useFlits";
+import useUsers from "@/composables/useUsers";
+import router from "@/router";
+import { ref } from "vue";
+import GoBack from "@/components/GoBack";
+import GoModal from "@/components/GoModal";
 
 export default {
-  name: 'testView',
+  name: "testView",
   components: {
-    GoBack, GoModal
+    GoBack,
+    GoModal,
   },
   setup() {
-
     const flitInfo = ref({
-      id_user: null,
-      message: null
-    })
+      id_user: JSON.parse(localStorage.getItem("currentUserId")),
+      message: null,
+    });
 
-    const {fetchFlits, createNewFlit} = useFlits()
-    const {fetchUsers} = useUsers()
-    const isOpen = ref(false)
+    const { fetchFlits, createNewFlit } = useFlits();
+    const { fetchUsers } = useUsers();
+    const isOpen = ref(false);
     function goProfile() {
-      router.push({name: "profileView"})
+      router.push({ name: "profileView" });
     }
 
     return {
-        fetchFlits,
-        createNewFlit,
-        flitInfo,
-        fetchUsers,
-       isOpen,
-        goProfile,
-        openModal : () => isOpen.value = true,
-        closeModal: () => isOpen.value = false,
-    }       
-  }
-}
+      fetchFlits,
+      createNewFlit,
+      flitInfo,
+
+      fetchUsers,
+      isOpen,
+      goProfile,
+      openModal: () => (isOpen.value = true),
+      closeModal: () => (isOpen.value = false),
+    };
+  },
+};
 </script>
 
 <style scoped>
-
 .app-wraper {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly
+  justify-content: space-evenly;
 }
 
 .create-flit {
@@ -116,5 +138,4 @@ button {
   color: black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 </style>
