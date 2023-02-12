@@ -218,40 +218,10 @@ header img {
 
 .nav__name {
     font-size: var(--tiny-font-size);
-    /* display: none;*/ /* Minimalist design, hidden labels */
+    color: black;
     }
 
 .nav__icon {
     font-size: 18px;
     }
-
-/* For medium devices */
-@media screen and (min-width: 576px) {
-.nav__list {
-        justify-content: center;
-        column-gap: 3rem;
-    }
-    }
-
-@media screen and (min-width: 767px) {
-body {
-        margin: 0;
-    }
-.section {
-        padding: 7rem 0 2rem;
-    }
-.nav {
-        height: calc(var(--header-height) + 1.5rem); /* 4.5rem */
-    }
-.nav__img {
-        display: none;
-    }
-.nav__icon {
-        display: none;
-    }
-.nav__name {
-    font-size: var(--normal-font-size);
-    /* display: block; */ /* Minimalist design, visible labels */
-    }
-}
 </style>
