@@ -10,11 +10,23 @@
                     <li class="nav__item">
                         <router-link to= "/" href="#home" class="nav__link">
                             <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path></svg>
-                            <span class="nav__name">Home/menu</span>
+                            <span class="nav__name">Logout</span>
+                        </router-link>
+                    </li>
+                    <li class="nav__item">
+                        <router-link to= "/" href="#home" class="nav__link">
+                            <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path></svg>
+                            <span class="nav__name">Home</span>
+                        </router-link>
+                    </li>
+                    <li class="nav__item">
+                        <router-link to= "/profile" href="#home" class="nav__link">
+                            <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path></svg>
+                            <span class="nav__name">Profile</span>
                         </router-link>
                     </li>
 
-                   <!--  <li class="nav__item">
+                    <!--  <li class="nav__item">
                         <router-link to="/test" href="#test" class="nav__link">
                             <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m13.293 2.707.818.818L3.318 14.318C2.468 15.168 2 16.298 2 17.5s.468 2.332 1.318 3.183C4.169 21.532 5.299 22 6.5 22s2.331-.468 3.182-1.318L20.475 9.889l.818.818 1.414-1.414-8-8-1.414 1.414zm3.182 8.354-2.403-2.404-1.414 1.414 2.403 2.404-1.414 1.415-.99-.99-1.414 1.414.99.99-1.415 1.415-2.403-2.404L7 15.728l2.403 2.404-1.136 1.136c-.945.944-2.59.944-3.535 0C4.26 18.795 4 18.168 4 17.5s.26-1.295.732-1.768L15.525 4.939l3.535 3.535-2.585 2.587z"></path></svg>
                             <span class="nav__name">TestView</span>
@@ -59,7 +71,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
 
 :root {
---header-height: 3rem;
+--header-height: 50px;
 --hue: 174;
 --sat: 63%;
 --first-color: hsl(var(--hue), var(--sat), 40%);
@@ -73,7 +85,7 @@ export default {
 --body-font: 'Open Sans', sans-serif;
 --h1-font-size: 1.5rem;
 --normal-font-size: .938rem;
---tiny-font-size: .625rem;
+--tiny-font-size: 13px;
 
 /*========== z index ==========*/
 --z-tooltip: 10;
@@ -108,6 +120,7 @@ a {
 header img {
     max-width: 20%;
     height: auto;
+    
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -138,10 +151,8 @@ header img {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: var(--z-fixed);
-    transition: .4s;
+    padding: 20px;
     background-color: black;
-    margin-top: 30px;
     }
 
     #nav__logo > img {
@@ -211,7 +222,7 @@ header img {
     }
 
 .nav__icon {
-    font-size: 1.5rem;
+    font-size: 18px;
     }
 
 /* For medium devices */
@@ -219,9 +230,6 @@ header img {
 .nav__list {
         justify-content: center;
         column-gap: 3rem;
-    }
-.nav__link:hover {
-    color: var(--first-color);
     }
     }
 
@@ -244,9 +252,6 @@ body {
 .nav__name {
     font-size: var(--normal-font-size);
     /* display: block; */ /* Minimalist design, visible labels */
-    }
-.nav__link:hover {
-    color: var(--first-color);
     }
 }
 </style>
