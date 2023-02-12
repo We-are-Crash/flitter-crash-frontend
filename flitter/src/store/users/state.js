@@ -3,7 +3,8 @@ function state() {
       users: [],
       isLoading: false,
       selectedUser: {},
-      isFollowed: false
+      isFollowed: false,
+      followedPeople: []
     };
   }
 

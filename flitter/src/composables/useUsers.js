@@ -12,7 +12,9 @@ const useUsers = () => {
 
         //Actions
         fetchUsers: () => store.dispatch("users/fetchUsers"),
-        fetchSelectedUser: (id_user) => store.dispatch("users/fetchSelectedUser", id_user)
+        fetchSelectedUser: (id_user) => store.dispatch("users/fetchSelectedUser", id_user),
+        followAUser: (userId, selfUserId) => store.dispatch("users/followAUser", userId, selfUserId),
+        unfollowAUser: (userId, selfUserId) => store.dispatch("users/unfollowAUser", userId, selfUserId)
         
     }
 }

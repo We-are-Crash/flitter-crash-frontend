@@ -10,6 +10,9 @@ const getters = {
     },
     getIsFollowed(state) {
         return state.isFollowed
+    },
+    getFollowedPeople(state) {
+        return state.followedPeople
     }
   
 }
