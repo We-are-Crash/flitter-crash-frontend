@@ -50,11 +50,6 @@ export default defineComponent({
 
   setup() {
 
-
-   /*  let followedPeople = localStorage.getItem("followedPeople");
-
-    followedPeople = JSON.parse(followedPeople); */
-
     let selfUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
     const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
