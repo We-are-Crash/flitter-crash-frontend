@@ -1,7 +1,7 @@
 <template>
   <div class="flit-card">
     <div class="flit-author">
-      <img src="../assets/flitterLogo2-removebg-preview.png" />
+      <img :src="flit.id_user.avatar" />
       <h3>{{ flit.id_user.name }}</h3>
       <button class="astext" @click="$emit('goUserProfile', flit)">
         Ir al perfil
@@ -62,6 +62,7 @@ h3 {
   align-items: center;
   justify-content: space-evenly;
   color: black;
+  margin-right: 8px;
 }
 
 .flit-author {
@@ -69,10 +70,13 @@ h3 {
   flex-direction: row;
   justify-content: flex-start;
   align-self: flex-start;
+  margin-bottom: 8px;
 }
 
 .flit-author > img {
   width: 40px;
+  height: 40px;
+  margin-right: 5px;
 }
 
 .flit-message {
@@ -82,7 +86,7 @@ h3 {
   padding: 20px;
   width: 100%;
   border: 0.5px solid rgb(171, 175, 143);
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .flit-date {
