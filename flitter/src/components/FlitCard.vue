@@ -80,9 +80,8 @@ h3 {
 }
 
 .flit-message {
-  font-style: italic;
   text-align: left;
-  background-color: rgb(246, 245, 240);
+  background-color: rgb(255, 251, 233);
   padding: 20px;
   width: 100%;
   border: 0.5px solid rgb(171, 175, 143);

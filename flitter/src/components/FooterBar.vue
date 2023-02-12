@@ -148,6 +148,7 @@ header img {
 /*=============== HEADER ===============*/
 .header {
     position: fixed;
+    display: block;
     top: 0;
     left: 0;
     width: 100%;
