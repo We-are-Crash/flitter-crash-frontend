@@ -6,8 +6,8 @@ const useLogin = () => {
 
     return {
         //Getters
-        getToken: computed(() => store.getters['login/getToken']),
-        selfUser: computed(() => store.getters["users/getSelfUser"]),
+        token: computed(() => store.getters["login/getToken"]),
+        selfUser: computed(() => store.getters["login/getSelfUser"]),
 
         //Mutations
         logout: (value) => store.commit("login/deleteToken", value),

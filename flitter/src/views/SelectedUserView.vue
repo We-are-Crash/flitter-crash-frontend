@@ -40,7 +40,7 @@
 import { defineComponent } from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
-// import useLogin from "@/composables/useLogin";
+import useLogin from "@/composables/useLogin";
 
 export default defineComponent({
   name: "selectedUserView",
@@ -49,14 +49,20 @@ export default defineComponent({
   // },
 
   setup() {
-    let followedPeople = localStorage.getItem("followedPeople");
+
+
+   /*  let followedPeople = localStorage.getItem("followedPeople");
+
+    followedPeople = JSON.parse(followedPeople); */
+
     let selfUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
-    followedPeople = JSON.parse(followedPeople);
+    const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
+    const {selfUser} = useLogin()
+
+    const followedPeople = selfUser.value.peopleYouFollow
 
     console.log("Gente a la que sigues", followedPeople);
-
-    const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
 
     const route = useRoute();
 
@@ -65,6 +71,7 @@ export default defineComponent({
     let isFollowed = false;
 
     fetchSelectedUser(id);
+
     if (followedPeople.includes(id)) {
       isFollowed = true;
     }

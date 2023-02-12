@@ -3,6 +3,7 @@ const getters = {
     return state.token;
   },
   getSelfUser(state) {
+    console.log("Hola")
     return state.selfUser
   },
 
