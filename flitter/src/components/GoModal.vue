@@ -11,14 +11,12 @@
 
 <script>
 export default {
-<<<<<<< HEAD
-    setup( ) {
-=======
+  setup( ) {
     /* setup( props, context ) {
 >>>>>>> 0d1e7a1e55a8e1ca8168bc704ef0b050203c8217
 
     } */
-}
+}}
 </script>
 
 <style scoped>
