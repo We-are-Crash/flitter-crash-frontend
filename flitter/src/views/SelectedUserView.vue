@@ -9,10 +9,7 @@
 
       <div class="user-info">
         <div class="avatar-and-follow-btn">
-          <img
-            class="avatar"
-            src="../assets/flitterLogo2-removebg-preview.png"
-          />
+          <img class="avatar" :src="selectedUser.avatar" />
           <div v-if="isOwnProfile">
             <button>Edit</button>
           </div>
@@ -23,8 +20,7 @@
         </div>
         <h1>{{ selectedUser.name }}</h1>
         <p class="bio">
-          Hardcoded bio Lorem, ipsum dolor sit amet consectetur adipisicing
-          elit.
+          {{ selectedUser.bio }}
         </p>
         <div class="follow-count">
           <p>
@@ -115,6 +111,7 @@ body {
 
 .avatar-and-follow-btn > .avatar {
   width: 60px;
+  height: 60px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.533);
   align-self: flex-start;
