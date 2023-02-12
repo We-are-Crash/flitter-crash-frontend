@@ -13,8 +13,13 @@
             class="avatar"
             src="../assets/flitterLogo2-removebg-preview.png"
           />
-          <button v-if="!isFollowed">Follow</button>
-          <button v-else>Unfollow</button>
+          <div v-if="isOwnProfile">
+            <button>Edit</button>
+          </div>
+          <div v-else>
+            <button v-if="!isFollowed">Follow</button>
+            <button v-else>Unfollow</button>
+          </div>
         </div>
         <h1>{{ selectedUser.name }}</h1>
         <p class="bio">
@@ -49,6 +54,7 @@ export default defineComponent({
 
   setup() {
     let followedPeople = localStorage.getItem("followedPeople");
+    let selfUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
     followedPeople = JSON.parse(followedPeople);
 
@@ -67,7 +73,9 @@ export default defineComponent({
       isFollowed = true;
     }
 
-    return { selectedUser, isLoading, isFollowed };
+    const isOwnProfile = id === selfUserId;
+
+    return { selectedUser, isLoading, isFollowed, isOwnProfile };
   },
 });
 </script>
@@ -112,7 +120,7 @@ body {
   align-self: flex-start;
 }
 
-.avatar-and-follow-btn > button {
+.avatar-and-follow-btn > div > button {
   background: none;
   border: 1px solid rgb(103, 103, 103);
   border-radius: 15px;
