@@ -37,6 +37,8 @@ const actions = {
 
     router.push({ name: "flitsView" });
   },
+
+  //Logout: usar el método sesionStorage.clear() para limpiar la persistencia del estado
 };
 
 export default actions;

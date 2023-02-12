@@ -24,12 +24,8 @@ const actions = {
 
     commit("setFollowedPeople", data.peopleYouFollow);
 
-    localStorage.setItem(
-      "followedPeople",
-      JSON.stringify(data.peopleYouFollow)
-    );
+    
   },
-
   async unfollowAUser({ commit }, userId, selfUserId) {
 
     const { data } = await flitterApi.delete(`/users/${userId}/follow`, selfUserId) 
