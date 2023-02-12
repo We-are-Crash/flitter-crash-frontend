@@ -22,8 +22,12 @@
           elit.
         </p>
         <div class="follow-count">
-          <p><span>21</span> following</p>
-          <p><span>12</span> followers</p>
+          <p>
+            <span>{{ selectedUser.peopleYouFollow.length }}</span> following
+          </p>
+          <p>
+            <span>{{ selectedUser.followers.length }}</span> followers
+          </p>
         </div>
       </div>
       <GoBack />
@@ -32,51 +36,43 @@
 </template>
 
 <script>
-import { defineComponent,} from "vue";
+import { defineComponent } from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
-import useLogin from "@/composables/useLogin";
+// import useLogin from "@/composables/useLogin";
 
 export default defineComponent({
   name: "selectedUserView",
-  components: {
-    GoBack
-  },
+  // components: {
+  //   GoBack
+  // },
 
   setup() {
-    
-    let followedPeople = localStorage.getItem("followedPeople")
+    let followedPeople = localStorage.getItem("followedPeople");
 
-    followedPeople = JSON.parse(followedPeople)
+    followedPeople = JSON.parse(followedPeople);
 
-    console.log("Gente a la que sigues", followedPeople)
+    console.log("Gente a la que sigues", followedPeople);
 
     const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
 
     const route = useRoute();
 
     const id = route.params.id;
- 
-    let isFollowed = false
-    
-    async function showUserInfo(id) {
 
-      await fetchSelectedUser(id)
-      if (followedPeople.includes(id)) {
-        isFollowed = true
-      } 
+    let isFollowed = false;
 
+    fetchSelectedUser(id);
+    if (followedPeople.includes(id)) {
+      isFollowed = true;
     }
 
-    showUserInfo(id);
-
-    return { selectedUser, isLoading, isFollowed};
+    return { selectedUser, isLoading, isFollowed };
   },
 });
 </script>
 
 <style scoped>
-
 body {
   display: flex;
   flex-direction: column;
@@ -105,7 +101,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 5px;
 }
 
