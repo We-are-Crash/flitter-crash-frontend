@@ -14,6 +14,9 @@
         <div id="lower">
             <input class="button" type="submit" value="Login" @click="login(credentials)">  
         </div>
+        <div>
+          <router-link :to="{name: 'signupView'}">Ir a Signup</router-link>
+        </div>
       </form>
       <GoBack />
     </div>
