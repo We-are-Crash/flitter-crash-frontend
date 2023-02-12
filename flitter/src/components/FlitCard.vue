@@ -1,8 +1,8 @@
 <template>
   <div class="flit-card">
     <div class="flit-author">
-      <img :src="flit.id_user.avatar" />
-      <h3>{{ flit.id_user.name }}</h3>
+      <img :src="flit.id_user.avatar || flitAvatar" />
+      <h3>{{ flit.id_user.name || flitName }}</h3>
       <button class="astext" @click="$emit('goUserProfile', flit)">
         Ir al perfil
       </button>
@@ -28,6 +28,12 @@ export default defineComponent({
     flit: {
       type: Object,
       required: true,
+    },
+    flitName: {
+      type: String,
+    },
+    flitAvatar: {
+      type: String,
     },
   },
 });
