@@ -4,7 +4,6 @@ function state() {
       isLoading: false,
       selectedUser: {},
       isFollowed: false,
-      followedPeople: []
     };
   }
 
