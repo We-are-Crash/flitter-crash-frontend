@@ -57,8 +57,6 @@ export default defineComponent({
 
     const followedPeople = selfUser.value.peopleYouFollow
 
-    console.log("Gente a la que sigues", followedPeople);
-
     const route = useRoute();
 
     const id = route.params.id;
