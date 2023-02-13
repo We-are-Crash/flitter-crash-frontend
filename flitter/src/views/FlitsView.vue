@@ -25,9 +25,17 @@
 
     setup() {
         
-      const {flits, isLoading, fetchFlits} = useFlits()
+      const {flits, isLoading, fetchFlits, fetchFollowedPeopleFlits} = useFlits()
 
-      
+      const token = localStorage.getItem("token")
+
+      if(token) {
+        fetchFollowedPeopleFlits(token)
+      }
+      else {
+        fetchFlits()
+      }
+
       fetchFlits()
 
       function goUserProfile(flit) {
