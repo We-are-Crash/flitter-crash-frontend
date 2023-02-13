@@ -2,7 +2,6 @@ const mutations = {
     setUsers(state, users) {
         state.users = users
     },
-    
     setIsLoading(state, isLoading) {
         state.isLoading = isLoading
     },
@@ -15,6 +14,9 @@ const mutations = {
     setSelfUser(state, selfUser) {
         state.selfUser = selfUser
     },
+    setFollowedPeople(state, followedPeople) {
+        state.selfUser.peopleYouFollow = followedPeople
+    }
 }
 
 export default mutations

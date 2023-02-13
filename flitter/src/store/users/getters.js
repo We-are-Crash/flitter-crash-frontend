@@ -14,6 +14,9 @@ const getters = {
     getSelfUser(state) {
         return state.selfUser
     },
+    getFollowedPeople(state) {
+        return state.selfUser.peopleYouFollow
+    }
   
 }
 

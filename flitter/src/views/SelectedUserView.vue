@@ -14,8 +14,8 @@
             <button>Edit</button>
           </div>
           <div v-else>
-            <button v-if="!isFollowed">Follow</button>
-            <button v-else>Unfollow</button>
+            <button v-if="!isFollowed" @click="followAUser(id, myId)">Follow</button>
+            <button v-else @click="unfollowAUser(id, myId)">Unfollow</button>
           </div>
         </div>
         <h1>{{ selectedUser.name }}</h1>
@@ -61,11 +61,17 @@ export default defineComponent({
   },
 
   setup() {
-    let selfUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
-    const { selectedUser, fetchSelectedUser, selfUser } = useUsers();
+   /*  const selfUserId = JSON.parse(localStorage.getItem("currentUserId")); */
+
+    const { selectedUser, fetchSelectedUser, selfUser, followAUser, unfollowAUser } = useUsers();
+
+    const selfUserId = selfUser.value._id
 
     const followedPeople = selfUser.value.peopleYouFollow;
+    const myId = selfUser.value._id
+    
+    console.log("La variable myId es igual a", selfUserId)
 
     const route = useRoute();
 
@@ -85,6 +91,10 @@ export default defineComponent({
       selectedUser,
       isFollowed,
       isOwnProfile,
+      followAUser,
+      unfollowAUser,
+      id,
+      myId
     };
   },
 });

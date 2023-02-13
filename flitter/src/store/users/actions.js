@@ -14,17 +14,22 @@ const actions = {
     commit("setSelectedUser", data.user);
     commit("setIsLoading", false)
   },
-  async followAUser({ commit }, userId, selfUserId) {
+  async followAUser({ commit }, id, selfUserId) {
 
-    const { data } = await flitterApi.post(`/users/${userId}/follow`, selfUserId) 
+    console.log("Entra en la función")
+    console.log("El id es", id)
+    console.log("Tu id es", selfUserId)
+    const { data } = await flitterApi.put(`/users/${id}/follow`, selfUserId) 
+    console.log("Hace la petición")
+    console.log("Devuelve esto:", data)
     commit("setFollowedPeople", data.peopleYouFollow); 
   },
   async unfollowAUser({ commit }, userId, selfUserId) {
 
-    const { data } = await flitterApi.delete(`/users/${userId}/follow`, selfUserId) 
+    const { data } = await flitterApi.delete(`/users/${userId}/unfollow`, selfUserId) 
+    console.log(data)
     commit("setFollowedPeople", data.peopleYouFollow);
   },
-
   async login({ commit }, credentials) {
     
     const { data } = await flitterApi.post("/users/login", credentials);
