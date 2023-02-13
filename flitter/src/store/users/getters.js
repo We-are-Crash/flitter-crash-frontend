@@ -16,6 +16,9 @@ const getters = {
     },
     getFollowedPeople(state) {
         return state.selfUser.peopleYouFollow
+    },
+    getToken(state) {
+        return state.token
     }
   
 }

@@ -10,6 +10,10 @@ const useUsers = () => {
         selectedUser: computed(() => store.getters["users/getSelectedUser"]),
         isLoading: computed(() => store.getters["users/getIsLoading"]),
         selfUser: computed(() => store.getters["users/getSelfUser"]),
+        token: computed(() => store.getters["users/getToken"]),
+
+        //Mutations
+        setToken: () => store.commit("users/setToken"),
 
         //Actions
         fetchUsers: () => store.dispatch("users/fetchUsers"),

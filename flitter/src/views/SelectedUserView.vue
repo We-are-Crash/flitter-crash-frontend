@@ -37,7 +37,7 @@
       <div v-if="isLoading">Cargando...</div>
       <div class="flits-list" v-else>
         <FlitCard
-          v-for="flit in selectedUserFlits"
+          v-for="flit in selectedUser.flits"
           :key="flit._id"
           :flit="flit"
           :flit-name="selectedUser.name"
@@ -82,9 +82,9 @@ export default defineComponent({
 
     fetchSelectedUser(id);
 
-    let selectedUserFlits = localStorage.getItem("selectedUserFlits")
+   /*  let selectedUserFlits = localStorage.getItem("selectedUserFlits")
     
-    selectedUserFlits = JSON.parse(selectedUserFlits)
+    selectedUserFlits = JSON.parse(selectedUserFlits) */
 
 
     if (followedPeople.includes(id)) {
@@ -93,10 +93,10 @@ export default defineComponent({
 
     /* const selectedUserFlits = selectedUser.value.flits */
 
-    selectedUserFlits.forEach(flit => {
+   /*  selectedUserFlits.forEach(flit => {
       const localDate = new Date(flit.createdAt).toLocaleString() 
       flit.createdAt = localDate
-    });
+    }); */
 
     
     const isOwnProfile = id === selfUserId;
@@ -109,7 +109,7 @@ export default defineComponent({
       unfollowAUser,
       id,
       selfUserId,
-      selectedUserFlits
+      /* selectedUserFlits */
     };
   },
 });

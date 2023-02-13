@@ -8,7 +8,7 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                        <router-link to= "/login" href="#logout" class="nav__link" @click="logout()">
+                        <router-link to= "/" href="#logout" class="nav__link" @click="logout()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m13 16 5-4-5-4v3H4v2h9z"></path><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path></svg>
                             <span class="nav__name">Logout</span>
                         </router-link>
@@ -68,7 +68,8 @@
 
 <script>
 import GoModal from "@/components/GoModal";
-import { ref } from "vue"; 
+import { ref, watch } from "vue"; 
+import useUsers from "@/composables/useUsers";
 
 export default {
     name: 'FooterNav',
@@ -76,18 +77,34 @@ export default {
         GoModal
     },
     setup() {
-        const token = localStorage.getItem("token")
+
+        const {token, setToken} = useUsers()
+
+        setToken(localStorage.getItem("token"))
+        /* const token = localStorage.getItem("token") */
+
         const popupOpen = ref({
             buttonOpen: false,
         });
+
         const popupClose = (popup) => {
             popupOpen.value[popup]= !popupOpen.value[popup]
         }
+
         function logout() {
             localStorage.removeItem("token")
+            setToken("")
+            console.log(token)
         }
+
+        watch(token, () => {
+            console.log("Se ha borrado el token")
+        })
     
-    return {token, logout, GoModal,
+    return {
+        token, 
+        logout, 
+        GoModal,
         popupOpen,
         popupClose}
     }
