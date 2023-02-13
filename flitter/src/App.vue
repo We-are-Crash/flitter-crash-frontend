@@ -1,7 +1,7 @@
 <template>
   <router-view />
   <div id="app">
-    <FooterNav/>
+    <FooterNav />
   </div>
 </template>
 <script>
@@ -9,7 +9,6 @@
     import FooterNav from './components/FooterBar.vue';
   
     export default defineComponent({
-      name: 'selectedUserView',
       components: {
         FooterNav
       },

@@ -1,10 +1,9 @@
 <template>
     <header class="header" id= "header">
         <nav class="nav container">
-                <router-link to="/profile" href="#" class="nav_logo">
+                <router-link to="/" href="#" class="nav_logo">
                     <img src="../assets/flitter-icon-whiteBgr.png">
                 </router-link>
-                
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
@@ -26,14 +25,12 @@
                             <span class="nav__name">TestView</span>
                         </router-link>
                     </li> -->
-
-                    <li class="nav__item" v-if="!token">
+                    <!-- <li class="nav__item" v-if="!token">
                         <router-link to="/signup" href="#sigup" class="nav__link">
                             <span class="nav__name">Signup
                             </span>
-                        </router-link>
-                    </li>
-
+                        </router-link> -->
+                    <!-- </li> -->
                     <li class="nav__item">
                         <router-link to="/user-profile/:id" href="#about" class="nav__link">
                             <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h4l3 3 3-3h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-7 3c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zM7.177 16c.558-1.723 2.496-3 4.823-3s4.266 1.277 4.823 3H7.177z"></path></svg>
@@ -41,27 +38,8 @@
                         </router-link>
                     </li>
                     
-<!-- 
-                    <GoModal v-if="isOpen" @on:close="closeModal">
-                                <form
-                                    @submit.prevent="
-                                        createNewFlit(flitInfo);
-                                        isOpen = false;
-                                        flitInfo.message = '';
-                                    ">
-                                    <input
-                                    type="text"
-                                    placeholder="Mensaje Nuevo"
-                                    v-model="flitInfo.message"
-                                    required
-                                    />
-                                    <button type="submit">Crear Flit</button>
-                                </form>-->
-                    <!-- <GoModal></GoModal> -->
                 </ul>
             </div>
-
-            <!-- <img class="nav__img" src= "/assets/img/perfil.png" alt=""> -->
         </nav>
     </header>
 </template>
@@ -86,6 +64,7 @@ export default {
         function logout() {
             localStorage.removeItem("token")
             sessionStorage.clear()
+            
         }
     
     return {token, logout, GoModal,
