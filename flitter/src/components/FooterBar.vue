@@ -170,10 +170,8 @@ header img {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: var(--z-fixed);
-    transition: .4s;
-    /* background-color: black; */
-    margin-top: 30px;
+    padding: 20px;
+    background-color: black;
     }
 
     #nav__logo > img {
