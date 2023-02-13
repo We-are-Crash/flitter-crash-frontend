@@ -2,10 +2,10 @@
   <div class="flit-card">
     <div class="flit-author">
       <img :src="flit.id_user.avatar || flitAvatar" />
-      <h3>{{ flit.id_user.name || flitName }}</h3>
-      <button class="astext" @click="$emit('goUserProfile', flit)">
+      <h3 @click="$emit('goUserProfile', flit)">{{ flit.id_user.name || flitName }}</h3>
+      <!-- <button class="astext" @click="$emit('goUserProfile', flit)">
         Ir al perfil
-      </button>
+      </button> -->
     </div>
 
     <div class="flit-info">
