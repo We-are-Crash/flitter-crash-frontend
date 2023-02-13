@@ -31,6 +31,11 @@ const actions = {
     const { data } = await flitterApi.post("/users/login", credentials);
     commit("setSelfUser", data.user);
     localStorage.setItem("token", data.token);
+    localStorage.setItem("selfUserId", data.user._id)
+
+    const followedPeople = JSON.stringify(data.user.peopleYouFollow)
+    localStorage.setItem('followedPeople', followedPeople);
+
     router.push({ name: "flitsView" });
   },
 
@@ -39,6 +44,7 @@ const actions = {
     const { data } = await flitterApi.post("/users/signup", userInfo);
     commit("setSelfUser", data.user);
     localStorage.setItem("token", data.token);
+    localStorage.setItem("selfUserId", data.user._id)
     router.push({ name: "flitsView" });
   },
 

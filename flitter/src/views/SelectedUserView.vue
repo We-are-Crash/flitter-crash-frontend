@@ -62,15 +62,23 @@ export default defineComponent({
 
   setup() {
 
-    const { selectedUser, fetchSelectedUser, selfUser, followAUser, unfollowAUser } = useUsers();
+    const { selectedUser, fetchSelectedUser, /* selfUser, */ followAUser, unfollowAUser } = useUsers();
 
-    const selfUserId = selfUser.value._id
+    /* const selfUserId = selfUser.value._id */
 
-    const followedPeople = selfUser.value.peopleYouFollow;
+    const selfUserId = localStorage.getItem("selfUserId")
+
+    /* const followedPeople = selfUser.value.peopleYouFollow; */
+
+    let followedPeople = localStorage.getItem("followedPeople")
+    
+    followedPeople = JSON.parse(followedPeople)
 
     const route = useRoute();
 
     const id = route.params.id;
+
+    console.log(id)
 
     let isFollowed = false;
 

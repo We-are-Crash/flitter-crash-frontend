@@ -79,7 +79,6 @@ export default {
 
         function logout() {
             localStorage.removeItem("token")
-            sessionStorage.clear()
         }
     
     return {token, logout}

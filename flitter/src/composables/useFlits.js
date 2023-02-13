@@ -11,6 +11,7 @@ const useFlits = () => {
 
         //Actions
         fetchFlits: () => store.dispatch("flits/fetchFlits"), 
+        fetchFollowedPeopleFlits: (token) => store.dispatch("flits/fetchFollowedPeopleFlits", token),
         createNewFlit: (flitInfo) => store.dispatch("flits/createNewFlit", flitInfo),
         fetchSelectedFlit: () => store.dispatch("flits/fetchSelectedFlit")
         
