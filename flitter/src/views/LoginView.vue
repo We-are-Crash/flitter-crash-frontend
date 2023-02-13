@@ -26,8 +26,8 @@
 <script>
 
   import { defineComponent, ref } from 'vue';
-  import useLogin from '@/composables/useLogin';
   import GoBack from '@/components/GoBack.vue';
+  import useUsers from '@/composables/useUsers';
   
   export default defineComponent({
     name: 'loginView',
@@ -37,7 +37,7 @@
   
   setup() {
 
-    const {login} = useLogin()
+    const {login} = useUsers()
 
     const credentials = ref({
       email: null,

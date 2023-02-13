@@ -54,7 +54,7 @@
             v-model="flitInfo.message"
             required
           />
-          <button type="submit">Crear Flit</button>
+           <button type="submit">Crear Flit</button>
         </form>
       </GoModal>
     </div>
@@ -93,7 +93,6 @@ export default {
       fetchFlits,
       createNewFlit,
       flitInfo,
-
       fetchUsers,
       isOpen,
       goProfile,
@@ -108,7 +107,8 @@ export default {
 .app-wraper {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  margin-top: 40px;
 }
 
 .create-flit {

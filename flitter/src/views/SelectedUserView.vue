@@ -33,6 +33,18 @@
       </div>
       <GoBack />
     </div>
+    <div class="flitList-main-wraper">
+      <div v-if="isLoading">Cargando...</div>
+      <div class="flits-list" v-else>
+        <FlitCard
+          v-for="flit in selectedUser.flits"
+          :key="flit._id"
+          :flit="flit"
+          :flit-name="selectedUser.name"
+          :flit-avatar="selectedUser.avatar"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,22 +52,20 @@
 import { defineComponent } from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
-import useLogin from "@/composables/useLogin";
+import FlitCard from "@/components/FlitCard.vue";
 
 export default defineComponent({
   name: "selectedUserView",
-  // components: {
-  //   GoBack
-  // },
+  components: {
+    FlitCard,
+  },
 
   setup() {
-
     let selfUserId = JSON.parse(localStorage.getItem("currentUserId"));
 
-    const { selectedUser, fetchSelectedUser, isLoading } = useUsers();
-    const {selfUser} = useLogin()
+    const { selectedUser, fetchSelectedUser, selfUser } = useUsers();
 
-    const followedPeople = selfUser.value.peopleYouFollow
+    const followedPeople = selfUser.value.peopleYouFollow;
 
     const route = useRoute();
 
@@ -71,7 +81,11 @@ export default defineComponent({
 
     const isOwnProfile = id === selfUserId;
 
-    return { selectedUser, isLoading, isFollowed, isOwnProfile };
+    return {
+      selectedUser,
+      isFollowed,
+      isOwnProfile,
+    };
   },
 });
 </script>
@@ -85,7 +99,7 @@ body {
 .user-card {
   display: flex;
   flex-direction: column;
-  margin: 120px 40px;
+  margin: 120px 40px 30px;
 }
 .user-background {
   max-height: 150px;
@@ -158,5 +172,10 @@ h1 {
 .follow-count span {
   font-size: 16px;
   font-weight: bold;
+}
+
+.flitList-main-wraper {
+  display: flex;
+  justify-content: center;
 }
 </style>

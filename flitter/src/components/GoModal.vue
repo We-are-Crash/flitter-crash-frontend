@@ -1,11 +1,8 @@
 <template>
-  <div class="modal-background fade-in"
-        @click.self="$emit('on:close')">
-
+  <div class="modal-background">
     <div class="modal-container">
-      <slot>Esto aparecera si no hay texto</slot>
+        <button type="submit">Crear Flit</button>
     </div>
-
   </div>
 </template>
 
@@ -20,6 +17,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .modal-background {
     position: fixed;
     top: 0;
@@ -34,11 +33,12 @@ export default {
 
 .modal-container {
   margin: 20px;
-    width: 250px;
-    height: 250px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 20px; 
+  width: 250px;
+  height: 250px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .center {

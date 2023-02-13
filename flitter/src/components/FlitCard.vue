@@ -1,8 +1,8 @@
 <template>
   <div class="flit-card">
     <div class="flit-author">
-      <img :src="flit.id_user.avatar" />
-      <h3>{{ flit.id_user.name }}</h3>
+      <img :src="flit.id_user.avatar || flitAvatar" />
+      <h3>{{ flit.id_user.name || flitName }}</h3>
       <button class="astext" @click="$emit('goUserProfile', flit)">
         Ir al perfil
       </button>
@@ -28,6 +28,12 @@ export default defineComponent({
     flit: {
       type: Object,
       required: true,
+    },
+    flitName: {
+      type: String,
+    },
+    flitAvatar: {
+      type: String,
     },
   },
 });
@@ -80,9 +86,8 @@ h3 {
 }
 
 .flit-message {
-  font-style: italic;
   text-align: left;
-  background-color: rgb(246, 245, 240);
+  background-color: rgb(255, 251, 233);
   padding: 20px;
   width: 100%;
   border: 0.5px solid rgb(171, 175, 143);
