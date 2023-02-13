@@ -14,8 +14,8 @@
             <button>Edit</button>
           </div>
           <div v-else>
-            <button v-if="!isFollowed" @click="followAUser(id, myId)">Follow</button>
-            <button v-else @click="unfollowAUser(id, myId)">Unfollow</button>
+            <button v-if="!isFollowed" @click="followAUser({id, selfUserId})">Follow</button>
+            <button v-else @click="unfollowAUser({id, selfUserId})">Unfollow</button>
           </div>
         </div>
         <h1>{{ selectedUser.name }}</h1>
@@ -62,16 +62,11 @@ export default defineComponent({
 
   setup() {
 
-   /*  const selfUserId = JSON.parse(localStorage.getItem("currentUserId")); */
-
     const { selectedUser, fetchSelectedUser, selfUser, followAUser, unfollowAUser } = useUsers();
 
     const selfUserId = selfUser.value._id
 
     const followedPeople = selfUser.value.peopleYouFollow;
-    const myId = selfUser.value._id
-    
-    console.log("La variable myId es igual a", selfUserId)
 
     const route = useRoute();
 
@@ -85,6 +80,12 @@ export default defineComponent({
       isFollowed = true;
     }
 
+ /*    function startFollowing(id, selfUserId) {
+      console.log("Id desde la función:", id)
+      console.log("SelfUserID desde la función:", selfUserId)
+      followAUser({id, selfUserId})
+    } */
+
     const isOwnProfile = id === selfUserId;
 
     return {
@@ -94,7 +95,7 @@ export default defineComponent({
       followAUser,
       unfollowAUser,
       id,
-      myId
+      selfUserId
     };
   },
 });

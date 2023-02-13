@@ -14,7 +14,7 @@ const useUsers = () => {
         //Actions
         fetchUsers: () => store.dispatch("users/fetchUsers"),
         fetchSelectedUser: (id_user) => store.dispatch("users/fetchSelectedUser", id_user),
-        followAUser: (userId, selfUserId) => store.dispatch("users/followAUser", userId, selfUserId),
+        followAUser: (id, selfUserId) => store.dispatch("users/followAUser", id, selfUserId),
         unfollowAUser: (userId, selfUserId) => store.dispatch("users/unfollowAUser", userId, selfUserId),
         signUp: (userInfo) => store.dispatch("users/signUp", userInfo), 
         login: (credentials) => store.dispatch("users/login", credentials)

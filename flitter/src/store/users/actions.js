@@ -14,27 +14,22 @@ const actions = {
     commit("setSelectedUser", data.user);
     commit("setIsLoading", false)
   },
-  async followAUser({ commit }, id, selfUserId) {
+  async followAUser({ commit }, {id, selfUserId}) {
 
-    console.log("Entra en la función")
-    console.log("El id es", id)
-    console.log("Tu id es", selfUserId)
-    const { data } = await flitterApi.put(`/users/${id}/follow`, selfUserId) 
-    console.log("Hace la petición")
-    console.log("Devuelve esto:", data)
+    console.log("Id del usuario al que quieres seguir:", id)
+    console.log("Tu id:", selfUserId)
+    const { data } = await flitterApi.put(`/users/${id}/follow`, {_id: selfUserId}) 
     commit("setFollowedPeople", data.peopleYouFollow); 
   },
-  async unfollowAUser({ commit }, userId, selfUserId) {
-
-    const { data } = await flitterApi.delete(`/users/${userId}/unfollow`, selfUserId) 
-    console.log(data)
+  async unfollowAUser({ commit }, {id, selfUserId}) {
+    
+    const { data } = await flitterApi.delete(`/users/${id}/unfollow`, {_id: selfUserId}) 
     commit("setFollowedPeople", data.peopleYouFollow);
   },
   async login({ commit }, credentials) {
     
     const { data } = await flitterApi.post("/users/login", credentials);
     commit("setSelfUser", data.user);
-    localStorage.setItem("currentUserId", JSON.stringify(data.user._id));
     localStorage.setItem("token", data.token);
     router.push({ name: "flitsView" });
   },
