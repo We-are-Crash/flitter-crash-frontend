@@ -25,16 +25,16 @@
 
     setup() {
         
-      const {flits, isLoading, fetchFlits, /* fetchFollowedPeopleFlits */} = useFlits()
+      const {flits, isLoading, fetchFlits, fetchFollowedPeopleFlits} = useFlits()
 
-      /* const token = localStorage.getItem("token") */
+      const token = localStorage.getItem("token")
 
-     /*  if(token) {
+      if(token) {
         fetchFollowedPeopleFlits(token)
       }
       else {
         fetchFlits()
-      } */
+      }
 
       fetchFlits()
 
