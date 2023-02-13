@@ -12,6 +12,8 @@ const actions = {
     commit("setIsLoading", true)
     const { data } = await flitterApi.get(`/users/${id}`) 
     commit("setSelectedUser", data.user);
+    const selectedUserFlits = JSON.stringify(data.user.flits)
+    localStorage.setItem('selectedUserFlits', selectedUserFlits);
     commit("setIsLoading", false)
   },
   async followAUser({ commit }, {id, selfUserId}) {

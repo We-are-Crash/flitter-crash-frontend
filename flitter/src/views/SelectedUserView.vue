@@ -37,7 +37,7 @@
       <div v-if="isLoading">Cargando...</div>
       <div class="flits-list" v-else>
         <FlitCard
-          v-for="flit in selectedUser.flits"
+          v-for="flit in selectedUserFlits"
           :key="flit._id"
           :flit="flit"
           :flit-name="selectedUser.name"
@@ -78,15 +78,26 @@ export default defineComponent({
 
     const id = route.params.id;
 
-    console.log(id)
-
     let isFollowed = false;
 
     fetchSelectedUser(id);
 
+    let selectedUserFlits = localStorage.getItem("selectedUserFlits")
+    
+    selectedUserFlits = JSON.parse(selectedUserFlits)
+
+
     if (followedPeople.includes(id)) {
       isFollowed = true;
     }
+
+    /* const selectedUserFlits = selectedUser.value.flits */
+
+    selectedUserFlits.forEach(flit => {
+      const localDate = new Date(flit.createdAt).toLocaleString() 
+      flit.createdAt = localDate
+    });
+
     
     const isOwnProfile = id === selfUserId;
 
@@ -97,7 +108,8 @@ export default defineComponent({
       followAUser,
       unfollowAUser,
       id,
-      selfUserId
+      selfUserId,
+      selectedUserFlits
     };
   },
 });

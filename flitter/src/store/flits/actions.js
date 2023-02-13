@@ -15,7 +15,6 @@ const actions = {
 
   async fetchFollowedPeopleFlits({ commit }, token) {
 
-    console.log("Entra en la función")
     commit("setIsLoading", true)
     const { data } = await flitterApi.get("/users/flitsPeopleYouFollow",
       {
@@ -24,23 +23,20 @@ const actions = {
         }
       }
     )
-    console.log("Hace la petición")
     commit("setIsLoading", false)
     data.Flit.forEach(flit => {
       const localDate = new Date(flit.createdAt).toLocaleString() //Para cambiar formato buscar método .format
       flit.createdAt = localDate
     });
     commit("setFlits", data.Flit);
-    console.log("Mete los flits en el estado")
-
   },
 
-  async createNewFlit({ commit }, flitInfo) {
+/*   async createNewFlit({ commit }, flitInfo) {
 
     commit("setIsLoading", true);
     await flitterApi.post("/feed/flits", flitInfo);
     commit("setIsLoading", false);
-  },
+  }, */
 
   async fetchSelectedFlit({ commit }) {
 
