@@ -8,16 +8,17 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
-                       <router-link to= "/" href="#home" class="nav__link" @click="logout()">
-                            <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path></svg>
+                        <router-link to= "/login" href="#logout" class="nav__link" @click="logout()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m13 16 5-4-5-4v3H4v2h9z"></path><path d="M20 3h-9c-1.103 0-2 .897-2 2v4h2V5h9v14h-9v-4H9v4c0 1.103.897 2 2 2h9c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2z"></path></svg>
                             <span class="nav__name">Logout</span>
                         </router-link>
-                    </li> 
-                    <li class="nav__item">
-                        <router-link to= "/" href="#home" class="nav__link">
-                            <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path></svg>
-                            <span class="nav__name">Home</span>
-                        </router-link>
+                    </li>
+                    <li @click="() => popupClose('buttonOpen')" class="nav__item">
+                        <GoModal v-if= "popupOpen.buttonOpen"/>
+                        <div class="nav__link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M4 22h12v-2H4V8H2v12c0 1.103.897 2 2 2z"></path><path d="M20 2H8c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm-2 9h-3v3h-2v-3h-3V9h3V6h2v3h3v2z"></path></svg>
+                            <span class="nav__name">Add</span>
+                        </div>
                     </li>
                     <!--  <li class="nav__item">
                         <router-link to="/test" href="#test" class="nav__link">
@@ -27,16 +28,16 @@
                     </li> -->
 
                     <li class="nav__item" v-if="!token">
-                        <router-link to="/signup" href="#create" class="nav__link">
-                            <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M16 2H8C4.691 2 2 4.691 2 8v13a1 1 0 0 0 1 1h13c3.309 0 6-2.691 6-6V8c0-3.309-2.691-6-6-6zm1 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"></path></svg>
-                            <span class="nav__name">Create/signup</span>
+                        <router-link to="/signup" href="#sigup" class="nav__link">
+                            <span class="nav__name">Signup
+                            </span>
                         </router-link>
                     </li>
 
-                    <li class="nav__item" v-if="!token">
-                        <router-link to="/login" href="#about" class="nav__link">
+                    <li class="nav__item">
+                        <router-link to="/user-profile/:id" href="#about" class="nav__link">
                             <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h4l3 3 3-3h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-7 3c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zM7.177 16c.558-1.723 2.496-3 4.823-3s4.266 1.277 4.823 3H7.177z"></path></svg>
-                            <span class="nav__name">Profile/login</span>
+                            <span class="nav__name">Profile</span>
                         </router-link>
                     </li>
                     
@@ -66,22 +67,29 @@
 </template>
 
 <script>
-/* import GoModal from "@/components/GoModal"; */
-/* import { ref } from "vue"; */
+import GoModal from "@/components/GoModal";
+import { ref } from "vue"; 
 
 export default {
     name: 'FooterNav',
     components: {
-        /* GoModal, */
+        GoModal
     },
     setup() {
         const token = localStorage.getItem("token")
-
+        const popupOpen = ref({
+            buttonOpen: false,
+        });
+        const popupClose = (popup) => {
+            popupOpen.value[popup]= !popupOpen.value[popup]
+        }
         function logout() {
             localStorage.removeItem("token")
         }
     
-    return {token, logout}
+    return {token, logout, GoModal,
+        popupOpen,
+        popupClose}
     }
 }
 </script>
