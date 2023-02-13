@@ -79,13 +79,7 @@ export default defineComponent({
     if (followedPeople.includes(id)) {
       isFollowed = true;
     }
-
- /*    function startFollowing(id, selfUserId) {
-      console.log("Id desde la función:", id)
-      console.log("SelfUserID desde la función:", selfUserId)
-      followAUser({id, selfUserId})
-    } */
-
+    
     const isOwnProfile = id === selfUserId;
 
     return {

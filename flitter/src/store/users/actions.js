@@ -23,7 +23,7 @@ const actions = {
   },
   async unfollowAUser({ commit }, {id, selfUserId}) {
     
-    const { data } = await flitterApi.delete(`/users/${id}/unfollow`, {_id: selfUserId}) 
+    const { data } = await flitterApi.put(`/users/${id}/unfollow`, {_id: selfUserId}) 
     commit("setFollowedPeople", data.peopleYouFollow);
   },
   async login({ commit }, credentials) {
