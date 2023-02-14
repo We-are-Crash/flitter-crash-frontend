@@ -16,7 +16,7 @@
           <div v-else>
             <!-- <button v-if="!isFollowed" @click="followAUser({id, selfUserId})">Follow</button>
             <button v-else @click="unfollowAUser({id, selfUserId})">Unfollow</button> -->
-            <button @click="empezarSeguir({id, selfUserId})"> {{ seguir }}</button>
+            <button @click="empezarSeguir({id, selfUserId})"> {{ followText }}</button>
           </div>
         </div>
         <h1>{{ selectedUser.name }}</h1>
@@ -28,7 +28,8 @@
             <span>{{ selectedUser.peopleYouFollow.length }}</span> following
           </p>
           <p>
-            <span>{{ selectedUser.followers.length }}</span> followers
+            <!-- <span>{{ selectedUser.followers.length }}</span> followers -->
+            <span>{{ selectedUserFollowers.length }}</span> followers
           </p>
         </div>
       </div>
@@ -65,7 +66,7 @@ export default defineComponent({
 
   setup() {
 
-    const { selectedUser, fetchSelectedUser, /* selfUser, */ followAUser, unfollowAUser } = useUsers();
+    const { selectedUser, fetchSelectedUser, /* selfUser, */ followAUser, unfollowAUser, selectedUserFollowers } = useUsers();
 
     /* const selfUserId = selfUser.value._id */
 
@@ -94,23 +95,25 @@ export default defineComponent({
       isFollowed = true;
     }
 
-    const seguir = ref("Seguir")
+    const followText = ref("Follow")
+    /* const selectedUserFollowers = ref(selectedUser.value.followers.length) */
 
     if(isFollowed) {
-      seguir.value = "No seguir"
+      followText.value = "Unfollow"
     }
     else {
-      seguir.value = "Seguir"
+      followText.value = "Follow"
     }
 
     function empezarSeguir({id, selfUserId}) {
-      if(seguir.value === "Seguir") {
+      if(followText.value === "Follow") {
         followAUser({id, selfUserId})
-        seguir.value = "No seguir"
+        followText.value = "Unfollow"
+        /* selectedUserFollowers.value = selectedUser.value.followers.length */
       }
       else {
         unfollowAUser({id, selfUserId})
-        seguir.value = "Seguir"
+        followText.value = "Follow"
       }
     }
 
@@ -132,8 +135,10 @@ export default defineComponent({
       unfollowAUser,
       id,
       selfUserId,
-      seguir,
-      empezarSeguir
+      followText,
+      empezarSeguir,
+      selectedUserFollowers
+      /* selectedUserFollowers */
       /* selectedUserFlits */
     };
   },

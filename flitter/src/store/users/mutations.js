@@ -17,6 +17,9 @@ const mutations = {
     setFollowedPeople(state, followedPeople) {
         state.selfUser.peopleYouFollow = followedPeople
     },
+    setSelectedUserFollowers(state, selectedUserFollowers) {
+        state.selectedUser.followers = selectedUserFollowers
+    },
     setToken(state, token) {
         state.token = token
     }
