@@ -24,12 +24,12 @@ const actions = {
       }
     )
     commit("setIsLoading", false)
-    data.Flit.forEach(flit => {
+    data.flits.forEach(flit => {
       const localDate = new Date(flit.createdAt).toLocaleString() //Para cambiar formato buscar método .format
       flit.createdAt = localDate
       console.log("Estoy en el forEach")
     });
-    commit("setFlits", data.Flit);
+    commit("setFlits", data.flits);
   },
 
   async createNewFlit({ commit }, flitInfo) {
