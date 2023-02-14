@@ -1,7 +1,7 @@
 <template>
   <div class="title">
     <h1>Flits</h1>
-    <div class="modal-container">
+    <div class="modal-container" v-if="token">
       <form id="flitForm">
         <textarea
           type="text"
@@ -83,6 +83,7 @@ export default defineComponent({
     return {
       isLoading,
       flits,
+      token,
       goUserProfile,
       createAndRefreshFlits,
       flitInfo
