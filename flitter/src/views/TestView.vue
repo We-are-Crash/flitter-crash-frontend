@@ -55,10 +55,10 @@
 </template>
 
 <script>
-import useFlits from "@/composables/useFlits"; //Esto va al modal
+import useFlits from "@/composables/useFlits"; 
 import useUsers from "@/composables/useUsers";
 import router from "@/router";
-import { ref } from "vue"; //Esto va al modal
+import { ref } from "vue"; 
 import GoBack from "@/components/GoBack";
 import GoModal from "@/components/GoModal";
 
@@ -70,9 +70,9 @@ export default {
   },
   setup() {
 
-    const message = ref({message: null}) //Esta variable va al modal
+    const message = ref({message: null}) 
 
-    const { fetchFlits, createNewFlit } = useFlits(); //Esto va al modal
+    const { fetchFlits, createNewFlit } = useFlits();
     const { fetchUsers } = useUsers();
     const isOpen = ref(false);
     function goProfile() {
@@ -82,24 +82,24 @@ export default {
     let id_user = localStorage.getItem("selfUserId")
     console.log(id_user)
 
-    const flitInfo = { //Este objeto va al modal
+    const flitInfo = { 
       id_user: id_user,
       message: message}
 
-    async function createAndRefreshFlits(flitInfo) { //Esta función entera va al modal
+    async function createAndRefreshFlits(flitInfo) { 
       await createNewFlit(flitInfo)
       await fetchFlits()
 
     }
 
     return {
-      flitInfo, //Esto va al modal
+      flitInfo, 
       fetchUsers,
       isOpen,
       goProfile,
       openModal: () => (isOpen.value = true),
       closeModal: () => (isOpen.value = false),
-      createAndRefreshFlits //Esto va al modal
+      createAndRefreshFlits 
     };
   },
 };

@@ -2,7 +2,7 @@
   <div class="modal">
     <div class="modal-background">
       <div class="modal-container">
-        <h1>Lets flit arround </h1>
+        <h1>Lets flit around </h1>
         <form id="flitForm">
           <label for="">Type your flit ☺️</label>
           <textarea
@@ -22,9 +22,36 @@
 
 <script>
 
+import useFlits from '@/composables/useFlits';
+import { ref } from 'vue';
+
 export default {
-  props: ['togglePopup']
+  props: ['togglePopup'],
+
+  setup() {
+    const message = ref({message: null})
+
+    const { fetchFlits, createNewFlit } = useFlits()
+
+    let id_user = localStorage.getItem("selfUserId")
+
+    const flitInfo = { 
+      id_user: id_user,
+      message: message}
+
+    async function createAndRefreshFlits(flitInfo) { 
+      await createNewFlit(flitInfo)
+      await fetchFlits()
+    }
+
+    return { 
+      flitInfo, 
+      createAndRefreshFlits 
+    }
   }
+  }
+
+  
 </script>
 
 <style scoped>
