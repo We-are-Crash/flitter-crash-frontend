@@ -1,15 +1,15 @@
 <template>
   <div class="title">
     <h1>Flits</h1>
-    <div class="modal-container" v-if="token">
+    <!-- <div class="modal-container" v-if="token">
       <form id="flitForm">
         <textarea
           type="text"
           required
           placeholder="Type your flit ☺️"
-        ></textarea>
+        ></textarea> -->
         <!-- <button class="closeModal" @click="togglePopup()">close</button> -->
-        <button
+        <!-- <button
           type="submit"
           value="Crear flit"
           @click="createAndRefreshFlits(flitInfo)"
@@ -17,7 +17,7 @@
           Flit it!
         </button>
       </form>
-    </div>
+    </div> -->
   </div>
   <div class="flitList-main-wraper">
     <div v-if="isLoading">Cargando...</div>

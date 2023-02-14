@@ -34,34 +34,12 @@
               <span>Sign in </span>
             </router-link>
           </li>
-          <GoModal
-            v-if="popupTriggers.buttonTrigger"
-            :togglePopup="() => togglePopup('buttonTrigger')"
-          >
-          </GoModal>
-          <!-- <li
-        @click="popupOpen = true"
-        class="nav__item"
-        v-if="token"
-      >
-        <GoModal v-if="popupOpen" @submitFlit="submitFlit('#flitForm')"/>
-      
-        <div class="nav__link">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            style="fill: rgba(0, 0, 0, 1); transform: ; msfilter: "
-          >
-            <path d="M4 22h12v-2H4V8H2v12c0 1.103.897 2 2 2z"></path>
-            <path
-              d="M20 2H8c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm-2 9h-3v3h-2v-3h-3V9h3V6h2v3h3v2z"
-            ></path>
-          </svg>
-          <span class="nav__name">Add</span>
-        </div>
-      </li> -->
+          <li>
+            <router-link to="/create-flit" class="nav__link" v-if="token">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M4 22h12v-2H4V8H2v12c0 1.103.897 2 2 2z"></path><path d="M20 2H8c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zm-2 9h-3v3h-2v-3h-3V9h3V6h2v3h3v2z"></path></svg>
+              <span class="nav__name">Add</span>
+            </router-link>
+          </li>
           <li class="nav__item" v-if="!token">
             <router-link to="/signup" href="#signup" class="nav__link">
               <span>Signup</span>
@@ -101,7 +79,6 @@ import { ref } from "vue";
 export default {
   name: "FooterNav",
   components: {
-    GoModal,
   },
   setup() {
     const popupTriggers = ref({

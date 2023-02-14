@@ -34,6 +34,12 @@ const routes = [
       import(/* webpackChunkName: "testView" */ "../views/TestView.vue"),
   },
   {
+    path: "/create-flit",
+    name: "createFlitView",
+    component: () =>
+      import(/* webpackChunkName: "createFlitView" */ "../views/CreateFlitView.vue"),
+  },
+  {
     path: "/flit-details/:id",
     name: "flitDetailView",
     component: () => import("../views/FlitDetailView.vue"),
