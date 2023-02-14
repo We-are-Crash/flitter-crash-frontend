@@ -18,15 +18,15 @@ const actions = {
   },
   async followAUser({ commit }, {id, selfUserId}) {
 
-    console.log("Id del usuario al que quieres seguir:", id)
-    console.log("Tu id:", selfUserId)
     const { data } = await flitterApi.put(`/users/${id}/follow`, {_id: selfUserId}) 
     commit("setFollowedPeople", data.peopleYouFollow); 
+    commit("setSelectedUserFollowers", data.selectedUserFollowers)
   },
   async unfollowAUser({ commit }, {id, selfUserId}) {
     
     const { data } = await flitterApi.put(`/users/${id}/unfollow`, {_id: selfUserId}) 
     commit("setFollowedPeople", data.peopleYouFollow);
+    commit("setSelectedUserFollowers", data.selectedUserFollowers)
   },
   async login({ commit }, credentials) {
     

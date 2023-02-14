@@ -11,6 +11,7 @@ const useUsers = () => {
         isLoading: computed(() => store.getters["users/getIsLoading"]),
         selfUser: computed(() => store.getters["users/getSelfUser"]),
         token: computed(() => store.getters["users/getToken"]),
+        selectedUserFollowers: computed(() => store.getters["users/getSelectedUserFollowers"]),
 
         //Mutations
         setToken: () => store.commit("users/setToken"),
