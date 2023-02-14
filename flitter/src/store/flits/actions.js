@@ -27,16 +27,17 @@ const actions = {
     data.Flit.forEach(flit => {
       const localDate = new Date(flit.createdAt).toLocaleString() //Para cambiar formato buscar método .format
       flit.createdAt = localDate
+      console.log("Estoy en el forEach")
     });
     commit("setFlits", data.Flit);
   },
 
-/*   async createNewFlit({ commit }, flitInfo) {
+  async createNewFlit({ commit }, flitInfo) {
 
     commit("setIsLoading", true);
     await flitterApi.post("/feed/flits", flitInfo);
     commit("setIsLoading", false);
-  }, */
+  },
 
   async fetchSelectedFlit({ commit }) {
 

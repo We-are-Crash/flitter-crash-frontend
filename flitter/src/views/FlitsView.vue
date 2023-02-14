@@ -36,8 +36,6 @@
         fetchFlits()
       }
 
-      fetchFlits()
-
       function goUserProfile(flit) {
         const id = flit.id_user._id
         router.push({name: "selectedUserView", params: {id} })

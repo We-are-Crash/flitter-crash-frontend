@@ -91,7 +91,10 @@ setup() {
     const token = localStorage.getItem("token")
 
     function logout() {
-        localStorage.removeItem("token")     
+        localStorage.removeItem("token")
+        localStorage.removeItem("followedPeople")
+        localStorage.removeItem("selectedUserFlits")
+        localStorage.removeItem("selfUserId")           
     }
   /*   function closeModal() {
       popupOpen = false

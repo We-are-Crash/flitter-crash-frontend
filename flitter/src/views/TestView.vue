@@ -5,14 +5,6 @@
     </div>
 
     <form>
-      <div>
-        <input
-          type="text"
-          placeholder="User id"
-          v-model="flitInfo.id_user"
-          required
-        />
-      </div>
 
       <div>
         <input
@@ -28,8 +20,8 @@
           class="button"
           type="submit"
           value="Crear flit"
-          @click="createNewFlit(flitInfo)"
-        />
+          @click="createAndRefreshFlits(flitInfo)"
+        /> <!-- Esto va al modal -->
       </div>
     </form>
 
@@ -63,10 +55,10 @@
 </template>
 
 <script>
-import useFlits from "@/composables/useFlits";
+import useFlits from "@/composables/useFlits"; //Esto va al modal
 import useUsers from "@/composables/useUsers";
 import router from "@/router";
-import { ref } from "vue";
+import { ref } from "vue"; //Esto va al modal
 import GoBack from "@/components/GoBack";
 import GoModal from "@/components/GoModal";
 
@@ -77,27 +69,36 @@ export default {
     GoModal,
   },
   setup() {
-    const flitInfo = ref({
-      id_user: JSON.parse(localStorage.getItem("currentUserId")),
-      message: null,
-    });
 
-    const { fetchFlits, createNewFlit } = useFlits();
+    const message = ref({message: null}) //Esta variable va al modal
+
+    const { fetchFlits, createNewFlit } = useFlits(); //Esto va al modal
     const { fetchUsers } = useUsers();
     const isOpen = ref(false);
     function goProfile() {
       router.push({ name: "profileView" });
     }
 
+    let id_user = localStorage.getItem("selfUserId")
+    console.log(id_user)
+
+    const flitInfo = { //Este objeto va al modal
+      id_user: id_user,
+      message: message}
+
+    async function createAndRefreshFlits(flitInfo) { //Esta función entera va al modal
+      await createNewFlit(flitInfo)
+      await fetchFlits()
+    }
+
     return {
-      fetchFlits,
-      createNewFlit,
-      flitInfo,
+      flitInfo, //Esto va al modal
       fetchUsers,
       isOpen,
       goProfile,
       openModal: () => (isOpen.value = true),
       closeModal: () => (isOpen.value = false),
+      createAndRefreshFlits //Esto va al modal
     };
   },
 };
