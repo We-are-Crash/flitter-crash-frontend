@@ -1,10 +1,12 @@
 <template>
 <header class="header" id= "header">
 
+
 <nav class="nav container">
   <router-link to="/" href="#" class="nav_logo">
     <img src="../assets/flitter-icon-whiteBgr.png" />
   </router-link>
+  <button @click="() => togglePopup('buttonTrigger')"> Flit it </button>
   <div class="nav__menu" id="nav-menu">
     <ul class="nav__list">
       <li class="nav__item" v-if="token">
@@ -34,7 +36,10 @@
           <span>Sign in </span>
         </router-link>
       </li>
-      <li
+      <GoModal v-if="popupTriggers.buttonTrigger" :togglePopup="()=> togglePopup('buttonTrigger')">
+
+      </GoModal>
+      <!-- <li
         @click="popupOpen = true"
         class="nav__item"
         v-if="token"
@@ -56,7 +61,7 @@
           </svg>
           <span class="nav__name">Add</span>
         </div>
-      </li>
+      </li> -->
     <li class="nav__item" v-if="!token">
         <router-link to="/signup" href="#signup" class="nav__link">
             <span>Signup</span>
@@ -85,8 +90,12 @@ components: {
     GoModal
 },
 setup() {
+    const popupTriggers = ref({
+      buttonTrigger: false})
 
-    const popupOpen = ref(false)
+    const togglePopup = (trigger) => {
+      popupTriggers.value[trigger] = !popupTriggers.value[trigger]
+    }
 
     const token = localStorage.getItem("token")
 
@@ -96,28 +105,20 @@ setup() {
         localStorage.removeItem("selectedUserFlits")
         localStorage.removeItem("selfUserId")           
     }
-  /*   function closeModal() {
-      popupOpen = false
-      console.log(popupOpen)
-    }
-    function openModal() {
-      popupOpen = true
-      console.log(popupOpen)
-    } */
 
-  
-    function submitFlit(flitText) {
-      let flit = this.$el.querySelector(flitText);
-      flit.submit();
-      this.popupOpen = false;
-    }
+    // function submitFlit(flitText) {
+    //   let flit = this.$el.querySelector(flitText);
+    //   flit.submit();
+    //   this.popupOpen = false;
+    // }
 
   return {
       token, 
       logout, 
       GoModal,
-      popupOpen,
-      submitFlit
+      popupTriggers,
+      togglePopup
+      // submitFlit
       /* closeModal,
       openModal */
   }
@@ -292,6 +293,16 @@ font-size: var(--normal-font-size);
 .nav__link:hover {
 color: var(--first-color);
 }
+}
+button {
+  align-self: center;
+  border: 1px black solid;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  font-weight: 900;
+  margin: 15px;
+  border-radius: 6px;
 }
 
 </style>

@@ -9,7 +9,10 @@
           type="text"
           required>
           </textarea>
-          <button type="submit" @click="$emit('submitFlit')">Flit it!</button>
+          <button class="closeModal" @click="togglePopup()">
+            close
+          </button>
+          <button type="submit" value="Crear flit" @click="createAndRefreshFlits(flitInfo)">Flit it!</button>
           </form>
       </div>
     </div>
@@ -17,13 +20,11 @@
 </template>
 
 
-
-
 <script>
-export default {
-  setup( ) {
 
-}}
+export default {
+  props: ['togglePopup']
+  }
 </script>
 
 <style scoped>

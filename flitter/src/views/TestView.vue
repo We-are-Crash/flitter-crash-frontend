@@ -46,7 +46,7 @@
             v-model="flitInfo.message"
             required
           />
-           <button type="submit">Crear Flit</button>
+          <button type="submit">Crear Flit</button>
         </form>
       </GoModal>
     </div>
@@ -89,6 +89,7 @@ export default {
     async function createAndRefreshFlits(flitInfo) { //Esta función entera va al modal
       await createNewFlit(flitInfo)
       await fetchFlits()
+
     }
 
     return {
