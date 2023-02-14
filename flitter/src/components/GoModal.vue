@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-background">
+  <div class="modal-background" @click.self="$emit('on:close')">
     <div class="modal-container">
       <h1>Lets flit arround </h1>
       <form>
@@ -16,11 +16,9 @@
 
 <script>
 export default {
+  emits: ['on:close'],
   setup( ) {
-    /* setup( props, context ) {
->>>>>>> 0d1e7a1e55a8e1ca8168bc704ef0b050203c8217
 
-    } */
 }}
 </script>
 
