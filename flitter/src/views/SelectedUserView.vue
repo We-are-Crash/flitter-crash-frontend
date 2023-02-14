@@ -54,11 +54,13 @@ import { defineComponent, ref } from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
 import FlitCard from "@/components/FlitCard.vue";
+import GoBack from "@/components/GoBack.vue";
 
 export default defineComponent({
   name: "selectedUserView",
   components: {
     FlitCard,
+    GoBack
   },
 
   setup() {

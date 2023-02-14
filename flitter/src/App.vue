@@ -10,7 +10,7 @@
   
     export default defineComponent({
       components: {
-        FooterNav
+        FooterNav,
       },
 
       setup() {
