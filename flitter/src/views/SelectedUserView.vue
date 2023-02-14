@@ -14,8 +14,9 @@
             <button>Edit</button>
           </div>
           <div v-else>
-            <button v-if="!isFollowed" @click="followAUser({id, selfUserId})">Follow</button>
-            <button v-else @click="unfollowAUser({id, selfUserId})">Unfollow</button>
+            <!-- <button v-if="!isFollowed" @click="followAUser({id, selfUserId})">Follow</button>
+            <button v-else @click="unfollowAUser({id, selfUserId})">Unfollow</button> -->
+            <button @click="empezarSeguir({id, selfUserId})"> {{ seguir }}</button>
           </div>
         </div>
         <h1>{{ selectedUser.name }}</h1>
@@ -49,7 +50,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import useUsers from "@/composables/useUsers";
 import { useRoute } from "vue-router";
 import FlitCard from "@/components/FlitCard.vue";
@@ -91,6 +92,26 @@ export default defineComponent({
       isFollowed = true;
     }
 
+    const seguir = ref("Seguir")
+
+    if(isFollowed) {
+      seguir.value = "No seguir"
+    }
+    else {
+      seguir.value = "Seguir"
+    }
+
+    function empezarSeguir({id, selfUserId}) {
+      if(seguir.value === "Seguir") {
+        followAUser({id, selfUserId})
+        seguir.value = "No seguir"
+      }
+      else {
+        unfollowAUser({id, selfUserId})
+        seguir.value = "Seguir"
+      }
+    }
+
     /* const selectedUserFlits = selectedUser.value.flits */
 
    /*  selectedUserFlits.forEach(flit => {
@@ -109,6 +130,8 @@ export default defineComponent({
       unfollowAUser,
       id,
       selfUserId,
+      seguir,
+      empezarSeguir
       /* selectedUserFlits */
     };
   },

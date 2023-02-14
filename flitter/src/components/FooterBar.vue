@@ -35,11 +35,12 @@
         </router-link>
       </li>
       <li
-        @click="() => popupClose('buttonOpen')"
+        @click="popupOpen = true"
         class="nav__item"
         v-if="token"
       >
-        <GoModal v-if="popupOpen.buttonOpen" />
+        <GoModal v-if="popupOpen" @submitFlit="submitFlit('#flitForm')"/>
+      
         <div class="nav__link">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,24 +57,17 @@
           <span class="nav__name">Add</span>
         </div>
       </li>
-      <!--  <li class="nav__item">
-                    <router-link to="/test" href="#test" class="nav__link">
-                        <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="m13.293 2.707.818.818L3.318 14.318C2.468 15.168 2 16.298 2 17.5s.468 2.332 1.318 3.183C4.169 21.532 5.299 22 6.5 22s2.331-.468 3.182-1.318L20.475 9.889l.818.818 1.414-1.414-8-8-1.414 1.414zm3.182 8.354-2.403-2.404-1.414 1.414 2.403 2.404-1.414 1.415-.99-.99-1.414 1.414.99.99-1.415 1.415-2.403-2.404L7 15.728l2.403 2.404-1.136 1.136c-.945.944-2.59.944-3.535 0C4.26 18.795 4 18.168 4 17.5s.26-1.295.732-1.768L15.525 4.939l3.535 3.535-2.585 2.587z"></path></svg>
-                        <span class="nav__name">TestView</span>
-                    </router-link>
-                </li> -->
-                <!-- <li class="nav__item" v-if="!token">
-                    <router-link to="/signup" href="#sigup" class="nav__link">
-                        <span class="nav__name">Signup
-                        </span>
-                    </router-link> -->
-                <!-- </li> -->
-                <li class="nav__item">
+    <li class="nav__item" v-if="!token">
+        <router-link to="/signup" href="#signup" class="nav__link">
+            <span>Signup</span>
+        </router-link> 
+        </li>
+                <!--<li class="nav__item">
                     <router-link to="/user-profile/:id" href="#about" class="nav__link">
                         <svg class= "nav__icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 2H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h4l3 3 3-3h4a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm-7 3c1.727 0 3 1.272 3 3s-1.273 3-3 3c-1.726 0-3-1.272-3-3s1.274-3 3-3zM7.177 16c.558-1.723 2.496-3 4.823-3s4.266 1.277 4.823 3H7.177z"></path></svg>
                         <span class="nav__name">Profile</span>
                     </router-link>
-                </li>
+                </li>-->
                 
             </ul>
         </div>
@@ -82,30 +76,48 @@
 </template>
 
 <script>
-import GoModal from "@/components/GoModal";
+import GoModal from "@/components/GoModal"
 import { ref } from "vue";
+
 export default {
 name: 'FooterNav',
 components: {
     GoModal
 },
 setup() {
+
+    const popupOpen = ref(false)
+
     const token = localStorage.getItem("token")
-    const popupOpen = ref({
-        buttonOpen: false,
-    });
-    const popupClose = (popup) => {
-        popupOpen.value[popup]= !popupOpen.value[popup]
-    }
+
     function logout() {
-        localStorage.removeItem("token")
-        sessionStorage.clear()
-        
+        localStorage.removeItem("token")     
+    }
+  /*   function closeModal() {
+      popupOpen = false
+      console.log(popupOpen)
+    }
+    function openModal() {
+      popupOpen = true
+      console.log(popupOpen)
+    } */
+
+  
+    function submitFlit(flitText) {
+      let flit = this.$el.querySelector(flitText);
+      flit.submit();
+      this.popupOpen = false;
     }
 
-return {token, logout, GoModal,
-    popupOpen,
-    popupClose}
+  return {
+      token, 
+      logout, 
+      GoModal,
+      popupOpen,
+      submitFlit
+      /* closeModal,
+      openModal */
+  }
 
 }}
 
@@ -278,4 +290,5 @@ font-size: var(--normal-font-size);
 color: var(--first-color);
 }
 }
+
 </style>

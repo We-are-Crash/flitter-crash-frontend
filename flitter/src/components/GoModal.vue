@@ -1,22 +1,26 @@
 <template>
-  <div class="modal-background" @click.self="$emit('on:close')">
-    <div class="modal-container">
-      <h1>Lets flit arround </h1>
-      <form>
-        <label for="">Type your flit ☺️</label>
-        <textarea
-        type="text"
-        required>
-        </textarea>
-        <button type="submit">Flit it!</button>
-        </form>
+  <div class="modal">
+    <div class="modal-background">
+      <div class="modal-container">
+        <h1>Lets flit arround </h1>
+        <form id="flitForm">
+          <label for="">Type your flit ☺️</label>
+          <textarea
+          type="text"
+          required>
+          </textarea>
+          <button type="submit" @click="$emit('submitFlit')">Flit it!</button>
+          </form>
+      </div>
     </div>
   </div>
 </template>
 
+
+
+
 <script>
 export default {
-  emits: ['on:close'],
   setup( ) {
 
 }}
