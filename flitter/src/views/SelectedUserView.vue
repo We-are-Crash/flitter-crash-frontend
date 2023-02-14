@@ -61,7 +61,7 @@ export default defineComponent({
   name: "selectedUserView",
   components: {
     FlitCard,
-    GoBack
+    GoBack,
   },
 
   setup() {
@@ -70,13 +70,13 @@ export default defineComponent({
 
     /* const selfUserId = selfUser.value._id */
 
-    const selfUserId = localStorage.getItem("selfUserId")
+    const selfUserId = localStorage.getItem("selfUserId");
 
     /* const followedPeople = selfUser.value.peopleYouFollow; */
 
-    let followedPeople = localStorage.getItem("followedPeople")
-    
-    followedPeople = JSON.parse(followedPeople)
+    let followedPeople = localStorage.getItem("followedPeople");
+
+    followedPeople = JSON.parse(followedPeople);
 
     const route = useRoute();
 
@@ -86,12 +86,11 @@ export default defineComponent({
 
     fetchSelectedUser(id);
 
-   /*  let selectedUserFlits = localStorage.getItem("selectedUserFlits")
+    /*  let selectedUserFlits = localStorage.getItem("selectedUserFlits")
     
     selectedUserFlits = JSON.parse(selectedUserFlits) */
 
-
-    if (followedPeople.includes(id)) {
+    if (followedPeople && followedPeople.includes(id)) {
       isFollowed = true;
     }
 
@@ -119,12 +118,11 @@ export default defineComponent({
 
     /* const selectedUserFlits = selectedUser.value.flits */
 
-   /*  selectedUserFlits.forEach(flit => {
+    /*  selectedUserFlits.forEach(flit => {
       const localDate = new Date(flit.createdAt).toLocaleString() 
       flit.createdAt = localDate
     }); */
 
-    
     const isOwnProfile = id === selfUserId;
 
     return {
