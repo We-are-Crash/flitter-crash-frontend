@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import useFlits from "@/composables/useFlits";
 import FlitCard from "@/components/FlitCard.vue";
 import router from "@/router";
@@ -45,8 +45,7 @@ export default defineComponent({
   },
 
   setup() {
-    const { flits, isLoading, fetchFlits, fetchFollowedPeopleFlits } =
-      useFlits();
+    const { flits, isLoading, fetchFlits, fetchFollowedPeopleFlits, createNewFlit } = useFlits();
 
     const token = localStorage.getItem("token");
 
@@ -54,6 +53,26 @@ export default defineComponent({
       fetchFollowedPeopleFlits(token);
     } else {
       fetchFlits();
+    }
+
+    const message = ref({message: null})
+
+    let id_user = localStorage.getItem("selfUserId")
+    console.log(id_user)
+
+    const flitInfo = { 
+      id_user: id_user,
+      message: message}
+
+    async function createAndRefreshFlits(flitInfo) { 
+      await createNewFlit(flitInfo)
+      if (token) {
+        await fetchFollowedPeopleFlits(token);
+      } 
+      else {
+        await fetchFlits();
+      }
+
     }
 
     function goUserProfile(flit) {
@@ -65,6 +84,8 @@ export default defineComponent({
       isLoading,
       flits,
       goUserProfile,
+      createAndRefreshFlits,
+      flitInfo
     };
   },
 });

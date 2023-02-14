@@ -21,7 +21,7 @@
           type="submit"
           value="Crear flit"
           @click="createAndRefreshFlits(flitInfo)"
-        /> <!-- Esto va al modal -->
+        /> 
       </div>
     </form>
 
@@ -99,6 +99,8 @@ export default {
       goProfile,
       openModal: () => (isOpen.value = true),
       closeModal: () => (isOpen.value = false),
+      /* createNewFlit, */
+      fetchFlits,
       createAndRefreshFlits 
     };
   },
