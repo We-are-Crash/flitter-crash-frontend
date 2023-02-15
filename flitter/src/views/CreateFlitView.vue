@@ -18,39 +18,19 @@
         />
       </div>
     </form>
-
-    <!-- <div>
-      <h3>Introduce el nuevo mensaje</h3>
-      <form
-        @submit.prevent="
-          createNewFlit(flitInfo);
-          isOpen = false;
-          flitInfo.message = '';
-        "
-      >
-        <input
-          type="text"
-          placeholder="Mensaje Nuevo"
-          v-model="flitInfo.message"
-          required
-        />
-        <button type="submit">Crear Flit</button>
-      </form>
-    </div> -->
   </div>
-  <!-- <GoBack /> -->
+  <GoBack />
 </template>
 
 <script>
 import useFlits from "@/composables/useFlits"; 
-// import router from "@/router";
 import { ref } from "vue"; 
-// import GoBack from "@/components/GoBack";
+import GoBack from "@/components/GoBack";
 
 export default {
   name: "createFlitView",
   components: {
-    // GoBack,
+    GoBack,
   },
   setup(){
     const message = ref({message: null}) 

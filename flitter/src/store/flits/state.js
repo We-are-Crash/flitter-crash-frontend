@@ -2,7 +2,6 @@ function state() {
     return {
       flits: [],
       isLoading: false,
-      selectedFlit: {}
     };
   }
 

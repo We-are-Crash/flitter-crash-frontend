@@ -4,7 +4,7 @@
       <router-link to="/" href="#" class="nav_logo">
         <img src="../assets/flitter-icon-whiteBgr.png" />
       </router-link>
-      <!-- <button @click="() => togglePopup('buttonTrigger')">add</button> -->
+     
       <div class="nav__menu" id="nav-menu">
         <ul class="nav__list">
           <li class="nav__item" v-if="token">
@@ -100,11 +100,6 @@ export default {
       localStorage.removeItem("selfUserId");
     }
 
-    // function submitFlit(flitText) {
-    //   let flit = this.$el.querySelector(flitText);
-    //   flit.submit();
-    //   this.popupOpen = false;
-    // }
 
     return {
       token,
@@ -113,9 +108,7 @@ export default {
       popupTriggers,
       togglePopup,
       selfUserId,
-      // submitFlit
-      /* closeModal,
-      openModal */
+      
     };
   },
 };

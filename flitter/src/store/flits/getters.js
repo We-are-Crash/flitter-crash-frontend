@@ -5,9 +5,6 @@ const getters = {
     getIsLoading(state) {
       return state.isLoading;
     },
-    getSelectedFlit(state) {
-      return state.selectedFlit
-    }
   };
   
   export default getters;

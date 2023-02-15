@@ -2,12 +2,6 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import haveRoleGuard from './role-guards';
 
 const routes = [
-  /* {
-    path: "/",
-    name: "HomeView",
-    component: () =>
-      import( "../views/HomeView.vue"),
-  }, */
   {
     path: "/",
     name: "flitsView",
