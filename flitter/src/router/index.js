@@ -22,12 +22,6 @@ const routes = [
       import(/* webpackChunkName: "loginView" */ "../views/LoginView.vue"),
   },
   {
-    path: "/test",
-    name: "testView",
-    component: () =>
-      import(/* webpackChunkName: "testView" */ "../views/TestView.vue"),
-  },
-  {
     path: "/create-flit",
     name: "createFlitView",
     component: () =>

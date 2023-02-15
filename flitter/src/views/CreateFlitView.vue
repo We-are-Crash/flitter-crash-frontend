@@ -1,25 +1,22 @@
 <template>
-  <div class="app-wraper">
-    <form>
-      <div>
-        <input
+<div class="modal">
+    <div class="modal-background">
+      <div class="modal-container">
+        <form id="flitForm">
+        <h1>Let's flit arround </h1>
+          <textarea
+          placeholder="What is happening?"
           type="text"
-          placeholder="Mensaje"
+          autofocus
           v-model="flitInfo.message"
-          required
-        />
+          required>
+          </textarea>
+          <button type="submit" @click="createNewFlit(flitInfo)">Flit it!</button>
+          <GoBack />
+          </form>
       </div>
-      <div id="lower">
-        <input
-          class="button"
-          type="submit"
-          value="Crear flit"
-          @click="createNewFlit(flitInfo)"
-        />
-      </div>
-    </form>
+    </div>
   </div>
-  <GoBack />
 </template>
 
 <script>
@@ -52,11 +49,38 @@ export default {
 </script>
 
 <style scoped>
-.app-wraper {
+.modal-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+  }
+
+.modal-container {
+  display: flex;
+  align-self: baseline;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 20px;
+  margin-top: 90px;
+  width: 350px;
+  height: 400px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1{
+  margin: 0;
+}
+
+form{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  margin-top: 40px;
 }
 
 .create-flit {
@@ -64,30 +88,28 @@ export default {
   flex-direction: column;
 }
 
-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  background-color: white;
-  padding: 20px; 
-  width: 300px;
-  height: 350px;
+textarea{
+  padding: 5px;
+  border-style: none;
+  border: solid 0.8px #2c3e50;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  color: #00172d;
+  width: 90%;
+  align-self: center;
+  height: 60%;
 }
 
 button {
-  padding: 5px 25px;
-  margin-top: 15px;
-  margin-bottom: 20px;
-  border-style: none;
+  width: 80%;
+  align-self: center;
+  padding: 5px;
+  margin-top: 10px;
   border: solid 1px #00172d;
   border-radius: 6px;
-  background-color: gray;
-  font-size: 16px;
+  background-color: unset;
+  font-size: 20px;
   font-weight: bolder;
-  color: black;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #00172d;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
 }
 </style>
