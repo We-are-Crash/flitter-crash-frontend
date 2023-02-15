@@ -14,8 +14,6 @@
             <button>Edit</button>
           </div>
           <div v-else>
-            <!-- <button v-if="!isFollowed" @click="followAUser({id, selfUserId})">Follow</button>
-            <button v-else @click="unfollowAUser({id, selfUserId})">Unfollow</button> -->
             <button @click="empezarSeguir({id, selfUserId})"> {{ followText }}</button>
           </div>
         </div>
@@ -28,7 +26,6 @@
             <span>{{ selectedUser.peopleYouFollow.length }}</span> following
           </p>
           <p>
-            <!-- <span>{{ selectedUser.followers.length }}</span> followers -->
             <span>{{ selectedUserFollowers.length }}</span> followers
           </p>
         </div>
@@ -66,13 +63,9 @@ export default defineComponent({
 
   setup() {
 
-    const { selectedUser, fetchSelectedUser, /* selfUser, */ followAUser, unfollowAUser, selectedUserFollowers } = useUsers();
-
-    /* const selfUserId = selfUser.value._id */
+    const { selectedUser, fetchSelectedUser, followAUser, unfollowAUser, selectedUserFollowers } = useUsers();
 
     const selfUserId = localStorage.getItem("selfUserId");
-
-    /* const followedPeople = selfUser.value.peopleYouFollow; */
 
     let followedPeople = localStorage.getItem("followedPeople");
 
@@ -86,16 +79,11 @@ export default defineComponent({
 
     fetchSelectedUser(id);
 
-    /*  let selectedUserFlits = localStorage.getItem("selectedUserFlits")
-    
-    selectedUserFlits = JSON.parse(selectedUserFlits) */
-
     if (followedPeople && followedPeople.includes(id)) {
       isFollowed = true;
     }
 
     const followText = ref("Follow")
-    /* const selectedUserFollowers = ref(selectedUser.value.followers.length) */
 
     if(isFollowed) {
       followText.value = "Unfollow"
@@ -108,20 +96,12 @@ export default defineComponent({
       if(followText.value === "Follow") {
         followAUser({id, selfUserId})
         followText.value = "Unfollow"
-        /* selectedUserFollowers.value = selectedUser.value.followers.length */
       }
       else {
         unfollowAUser({id, selfUserId})
         followText.value = "Follow"
       }
     }
-
-    /* const selectedUserFlits = selectedUser.value.flits */
-
-    /*  selectedUserFlits.forEach(flit => {
-      const localDate = new Date(flit.createdAt).toLocaleString() 
-      flit.createdAt = localDate
-    }); */
 
     const isOwnProfile = id === selfUserId;
 
@@ -136,8 +116,6 @@ export default defineComponent({
       followText,
       empezarSeguir,
       selectedUserFollowers
-      /* selectedUserFollowers */
-      /* selectedUserFlits */
     };
   },
 });

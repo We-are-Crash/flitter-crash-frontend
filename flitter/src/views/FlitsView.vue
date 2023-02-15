@@ -1,23 +1,6 @@
 <template>
   <div class="title">
     <h1>Flits</h1>
-    <!-- <div class="modal-container" v-if="token">
-      <form id="flitForm">
-        <textarea
-          type="text"
-          required
-          placeholder="Type your flit ☺️"
-        ></textarea> -->
-        <!-- <button class="closeModal" @click="togglePopup()">close</button> -->
-        <!-- <button
-          type="submit"
-          value="Crear flit"
-          @click="createAndRefreshFlits(flitInfo)"
-        >
-          Flit it!
-        </button>
-      </form>
-    </div> -->
   </div>
   <div class="flitList-main-wraper">
     <div v-if="isLoading">Cargando...</div>
@@ -33,7 +16,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent,} from "vue";
 import useFlits from "@/composables/useFlits";
 import FlitCard from "@/components/FlitCard.vue";
 import router from "@/router";
@@ -45,7 +28,7 @@ export default defineComponent({
   },
 
   setup() {
-    const { flits, isLoading, fetchFlits, fetchFollowedPeopleFlits, createNewFlit } = useFlits();
+    const { flits, isLoading, fetchFlits, fetchFollowedPeopleFlits } = useFlits();
 
     const token = localStorage.getItem("token");
 
@@ -53,26 +36,6 @@ export default defineComponent({
       fetchFollowedPeopleFlits(token);
     } else {
       fetchFlits();
-    }
-
-    const message = ref({message: null})
-
-    let id_user = localStorage.getItem("selfUserId")
-    console.log(id_user)
-
-    const flitInfo = { 
-      id_user: id_user,
-      message: message}
-
-    async function createAndRefreshFlits(flitInfo) { 
-      await createNewFlit(flitInfo)
-      if (token) {
-        await fetchFollowedPeopleFlits(token);
-      } 
-      else {
-        await fetchFlits();
-      }
-
     }
 
     function goUserProfile(flit) {
@@ -85,8 +48,6 @@ export default defineComponent({
       flits,
       token,
       goUserProfile,
-      createAndRefreshFlits,
-      flitInfo
     };
   },
 });
