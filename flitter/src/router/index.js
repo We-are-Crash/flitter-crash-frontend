@@ -46,13 +46,6 @@ const routes = [
       return id;
     },
   },
-  {
-    path: "/profile",
-    name: "profileView",
-    beforeEnter: [haveRoleGuard],
-    component: () =>
-      import(/* webpackChunkName: "profileView" */ "../views/ProfileView.vue"),
-  },
 ];
 
 const router = createRouter({

@@ -60,10 +60,6 @@
 
     const { signUp } = useUsers()
 
-/*     function showUserInfo (userInfo) {
-      console.log(userInfo)
-    } */
-
     return {
       confirmPassword,
       userInfo,
